@@ -402,6 +402,18 @@
             line-height: 1.5;
         }
 
+        a.project-card {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a.project-card h4::after {
+            content: ' ↗';
+            font-size: 0.85em;
+            opacity: 0.55;
+        }
+
         .btn {
             display: inline-block;
             padding: 14px 28px;
@@ -442,19 +454,132 @@
             box-shadow: 0 6px 20px rgba(88, 166, 255, 0.3);
         }
 
-        .actions {
-            text-align: center;
-            padding: 20px 0;
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 28px;
         }
 
-        #qrcode, #qrcode-pt {
-            display: flex;
+        .header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.98em;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .header-btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .header-btn-primary {
+            background: var(--accent-green);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(35, 134, 54, 0.45);
+        }
+
+        .header-btn-primary:hover {
+            background: #2ea043;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(35, 134, 54, 0.55);
+        }
+
+        .header-btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .header-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* QR modal */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            align-items: center;
             justify-content: center;
             padding: 20px;
-            background: var(--item-bg);
-            border-radius: 10px;
-            margin: 20px 0;
+            animation: qr-fade 0.2s ease;
+        }
+
+        .qr-modal.active {
+            display: flex;
+        }
+
+        @keyframes qr-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .qr-modal-content {
+            position: relative;
+            background: var(--card-bg);
             border: 1px solid var(--item-border);
+            border-radius: 16px;
+            padding: 32px 32px 28px;
+            text-align: center;
+            max-width: 340px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .qr-modal-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--heading-text);
+            margin-bottom: 6px;
+        }
+
+        .qr-modal-hint {
+            color: var(--muted-text);
+            font-size: 0.9em;
+            margin-top: 16px;
+        }
+
+        .qr-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            line-height: 1;
+            color: var(--muted-text);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .qr-modal-close:hover {
+            color: var(--heading-text);
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #qrcode img,
+        #qrcode canvas {
+            border-radius: 8px;
         }
 
         .lang-content {
@@ -521,6 +646,16 @@
                     <div class="title">Instructor & Researcher</div>
                     <div class="title">Olds College of Agriculture & Technology</div>
                     <div class="tagline">Leading Canada's Digital Agriculture Revolution</div>
+                    <div class="header-actions">
+                        <a href="#" class="header-btn header-btn-primary" onclick="downloadVCard(); return false;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Save Contact (vCard)
+                        </a>
+                        <a href="#" class="header-btn header-btn-secondary" onclick="generateQR(); return false;">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
+                            Show QR Code
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Portuguese Content -->
@@ -528,7 +663,17 @@
                     <h1>Dr. Felippe Hoffmann Silva Karp</h1>
                     <div class="title">Instrutor & Pesquisador</div>
                     <div class="title">Olds College of Agriculture & Technology</div>
-                    <div class="tagline">Liderando a Revolução da Agricultura Digital do Canadá</div>
+                    <div class="tagline">Liderando a revolução da agricultura digital no Canadá</div>
+                    <div class="header-actions">
+                        <a href="#" class="header-btn header-btn-primary" onclick="downloadVCard(); return false;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Salvar Contato (vCard)
+                        </a>
+                        <a href="#" class="header-btn header-btn-secondary" onclick="generateQR(); return false;">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
+                            Mostrar QR Code
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -588,22 +733,22 @@
                         <div class="highlight-box">
                             <h3>🚀 Key Projects & Achievements</h3>
                             <div class="project-grid">
-                                <div class="project-card">
+                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html" target="_blank" rel="noopener">
                                     <h4>HyperLayer Data Platform</h4>
                                     <p>Continuing to support the integration of multi-layer farm data with AI predictions for precision agriculture.</p>
-                                </div>
-                                <div class="project-card">
+                                </a>
+                                <a class="project-card" href="https://ofpeprairiesca.github.io/" target="_blank" rel="noopener">
                                     <h4>On-Farm Precision Experimentation in the Prairies</h4>
                                     <p>Led the scientific analysis for a multi-year on-farm experimentation program across Alberta and Saskatchewan.</p>
-                                </div>
-                                <div class="project-card">
+                                </a>
+                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/index.html" target="_blank" rel="noopener">
                                     <h4>Olds College Smart Farm Research</h4>
                                     <p>Supporting research with &gt;4 terabytes of agricultural data from a 2,800-acre real-world farming operation.</p>
-                                </div>
-                                <div class="project-card">
+                                </a>
+                                <a class="project-card" href="https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm" target="_blank" rel="noopener">
                                     <h4>McGill-TELUS-Olds College Partnership</h4>
                                     <p>Joint research collaboration on agricultural data integration.</p>
-                                </div>
+                                </a>
                                 <div class="project-card">
                                     <h4>Data Standards Development</h4>
                                     <p>Developing standards for agricultural data collection and processing for AI model training.</p>
@@ -653,19 +798,6 @@
                         </div>
                     </div>
 
-                    <div class="actions">
-                        <a href="#" class="btn btn-primary" onclick="downloadVCard(); return false;">
-                            📱 Download Contact Card (vCard)
-                        </a>
-                        <a href="#qr-section" class="btn btn-secondary" onclick="generateQR(); return false;">
-                            🔲 Show QR Code
-                        </a>
-                    </div>
-
-                    <div id="qr-section" style="display:none;">
-                        <div class="section-title">Scan to Save Contact</div>
-                        <div id="qrcode"></div>
-                    </div>
                 </div>
 
                 <!-- Portuguese Content -->
@@ -675,11 +807,11 @@
                         <div class="contact-grid">
                             <div class="contact-item">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-                                <a href="#" id="email-link-pt" onclick="showEmail('email-link-pt'); return false;">Clique para revelar email</a>
+                                <a href="#" id="email-link-pt" onclick="showEmail('email-link-pt'); return false;">Clique para revelar o e-mail</a>
                             </div>
                             <div class="contact-item">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                                <a href="#" id="phone-link-pt" onclick="showPhone('phone-link-pt'); return false;">Clique para revelar telefone</a>
+                                <a href="#" id="phone-link-pt" onclick="showPhone('phone-link-pt'); return false;">Clique para revelar o telefone</a>
                             </div>
                             <div class="contact-item">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
@@ -693,7 +825,7 @@
                         <div class="contact-grid">
                             <div class="contact-item">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                <a href="https://www.linkedin.com/in/felippe-karp/" target="_blank">Perfil LinkedIn</a>
+                                <a href="https://www.linkedin.com/in/felippe-karp/" target="_blank">Perfil no LinkedIn</a>
                             </div>
                             <div class="contact-item">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
@@ -714,46 +846,46 @@
                         <div class="highlight-box">
                             <h3>🎓 Formação Acadêmica</h3>
                             <ul>
-                                <li>PhD em Engenharia de Biosystemas, McGill University, Canada </li>
-                                <li>MSc em Plantas, Meio-ambiente, e solos (foco em Agricultura de Precisao), Louisiana State University, Estados Unidos</li>
-                                <li>BSc Engenharia Agronomica, Escola Superior de Agriculture "Luiz de Queiroz", Universidade de Sao Paulo, Brasil</li>
+                                <li>Doutorado em Engenharia de Biossistemas, McGill University, Canadá</li>
+                                <li>Mestrado em Ciências de Plantas, Ambiente e Solo (ênfase em Agricultura de Precisão), Louisiana State University, Estados Unidos</li>
+                                <li>Graduação em Engenharia Agronômica, Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ/USP), Brasil</li>
                             </ul>
                         </div>
 
                         <div class="highlight-box">
-                            <h3>🚀 Projetos & Conquistas Principais</h3>
+                            <h3>🚀 Principais Projetos & Conquistas</h3>
                             <div class="project-grid">
-                                <div class="project-card">
+                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html" target="_blank" rel="noopener">
                                     <h4>Plataforma HyperLayer</h4>
-                                    <p>Continuando a apoiar a integração de múltiplas camadas de dados agrícolas com predições de IA para agricultura de precisão.</p>
-                                </div>
-                                <div class="project-card">
-                                    <h4>Experimentação de Precisão em Campo nas Pradarias</h4>
-                                    <p>Liderou a análise científica de um programa multianual de experimentação em fazendas em Alberta e Saskatchewan.</p>
-                                </div>
-                                <div class="project-card">
-                                    <h4>Pesquisa Smart Farm Olds College</h4>
-                                    <p>Apoiando pesquisa com &gt;4 terabytes de dados agrícolas de uma operação agrícola real de 2.800 acres.</p>
-                                </div>
-                                <div class="project-card">
+                                    <p>Integração de múltiplas camadas de dados agrícolas com predições de IA para a agricultura de precisão.</p>
+                                </a>
+                                <a class="project-card" href="https://ofpeprairiesca.github.io/" target="_blank" rel="noopener">
+                                    <h4>Experimentação de Precisão a Campo nas Pradarias</h4>
+                                    <p>Coordenação da análise científica de um programa multianual de ensaios a campo em Alberta e Saskatchewan.</p>
+                                </a>
+                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/index.html" target="_blank" rel="noopener">
+                                    <h4>Pesquisa Smart Farm — Olds College</h4>
+                                    <p>Pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).</p>
+                                </a>
+                                <a class="project-card" href="https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm" target="_blank" rel="noopener">
                                     <h4>Parceria McGill-TELUS-Olds College</h4>
-                                    <p>Colaboração de pesquisa conjunta em integração de dados agrícolas.</p>
-                                </div>
+                                    <p>Pesquisa conjunta entre McGill, TELUS e Olds College na integração de dados agrícolas.</p>
+                                </a>
                                 <div class="project-card">
                                     <h4>Desenvolvimento de Padrões de Dados</h4>
-                                    <p>Desenvolvendo padrões para coleta e processamento de dados agrícolas para treinamento de modelos de IA.</p>
+                                    <p>Criação de padrões para coleta e processamento de dados agrícolas no treinamento de modelos de IA.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="highlight-box">
-                            <h3>🎯 Foco de Pesquisa</h3>
+                            <h3>🎯 Linhas de Pesquisa</h3>
                             <ul>
                                 <li>Agricultura Digital & de Precisão</li>
                                 <li>Inteligência Artificial na Agricultura</li>
-                                <li>Fusão de Dados Multi-Fonte</li>
+                                <li>Fusão de Dados</li>
                                 <li>Sensoriamento Proximal & Remoto</li>
-                                <li>Máquinas & Tecnologia Agrícola</li>
+                                <li>Maquinário & Tecnologia Agrícola</li>
                             </ul>
                         </div>
                     </div>
@@ -776,7 +908,7 @@
                             <div class="media-item">
                                 <a href="https://grainswest.com/2025/09/the-making-of-a-digital-farmhand/" target="_blank">
                                     <strong>GrainsWest</strong><br>
-                                    <small>Artigo Digital Farmhand</small>
+                                    <small>Reportagem "Digital Farmhand"</small>
                                 </a>
                             </div>
                             <div class="media-item">
@@ -788,19 +920,6 @@
                         </div>
                     </div>
 
-                    <div class="actions">
-                        <a href="#" class="btn btn-primary" onclick="downloadVCard(); return false;">
-                            📱 Baixar Cartão de Contato (vCard)
-                        </a>
-                        <a href="#qr-section-pt" class="btn btn-secondary" onclick="generateQR(); return false;">
-                            🔲 Mostrar QR Code
-                        </a>
-                    </div>
-
-                    <div id="qr-section-pt" style="display:none;">
-                        <div class="section-title">Escaneie para Salvar Contato</div>
-                        <div id="qrcode-pt"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -810,9 +929,19 @@
                 <p>&copy; 2025 Dr. Felippe Karp. Transforming agriculture through technology and innovation.</p>
             </div>
             <div class="lang-content" id="footer-pt">
-                <p>&copy; 2025 Dr. Felippe Karp. Transformando a agricultura através de tecnologia e inovação.</p>
+                <p>&copy; 2025 Dr. Felippe Karp. Transformando a agricultura por meio de tecnologia e inovação.</p>
             </div>
         </footer>
+    </div>
+
+    <!-- QR Code modal -->
+    <div id="qr-modal" class="qr-modal" onclick="closeQR(event)">
+        <div class="qr-modal-content">
+            <button class="qr-modal-close" onclick="closeQR()" aria-label="Close">&times;</button>
+            <div class="qr-modal-title" id="qr-modal-title">Scan to Save Contact</div>
+            <div id="qrcode"></div>
+            <p class="qr-modal-hint" id="qr-modal-hint">Point your phone camera at the code to save the contact.</p>
+        </div>
     </div>
 
     <!-- QR Code Library -->
@@ -834,10 +963,10 @@
             }
         }
 
-        // Phone obfuscation
+        // Phone obfuscation (stored base64-encoded so the raw number never appears in page source)
         function decodePhone() {
-            const parts = ['+1', '514', '434', '4189'];
-            return parts.join('-');
+            const encoded = 'KzEtNTE0LTQzNC00MTg5'; // Base64 encoded
+            return atob(encoded);
         }
 
         function showPhone(elementId) {
@@ -849,17 +978,14 @@
             }
         }
 
-        // Initialize on page load
+        // Initialize on page load. NOTE: do NOT reveal email/phone here — they must
+        // stay hidden until the user clicks the reveal link (see showEmail/showPhone).
         window.onload = function() {
-            showEmail('email-link');
-            showEmail('email-link-pt');
-            showPhone('phone-link');
-            showPhone('phone-link-pt');
             initTheme();
         };
 
         let currentLang = 'en';
-        let qrGenerated = { en: false, pt: false };
+        let qrGenerated = false;
 
         function switchLang(lang) {
             currentLang = lang;
@@ -913,8 +1039,8 @@ FN:Felippe Karp
 N:Karp;Felippe;;;
 TITLE:Instructor & Researcher
 ORG:Olds College of Agriculture & Technology
-TEL;TYPE=CELL:+1-514-434-4189
-EMAIL:fkarp@oldscollege.ca
+TEL;TYPE=CELL:${decodePhone()}
+EMAIL:${decodeEmail()}
 URL:https://www.linkedin.com/in/felippe-karp/
 URL:https://scholar.google.com/citations?hl=en&user=RO-lEhwAAAAJ
 URL:https://orcid.org/0000-0001-6810-4656
@@ -935,37 +1061,50 @@ END:VCARD`;
         }
 
         function generateQR() {
-            const section = currentLang === 'en' ? 'qr-section' : 'qr-section-pt';
-            const qrDiv = currentLang === 'en' ? 'qrcode' : 'qrcode-pt';
-            
-            document.getElementById(section).style.display = 'block';
+            // Localize the modal text for the current language
+            const isEn = currentLang === 'en';
+            document.getElementById('qr-modal-title').textContent =
+                isEn ? 'Scan to Save Contact' : 'Escaneie para salvar o contato';
+            document.getElementById('qr-modal-hint').textContent =
+                isEn ? 'Point your phone camera at the code to save the contact.'
+                     : 'Aponte a câmera do celular para o código e salve o contato.';
 
-            if (!qrGenerated[currentLang]) {
+            if (!qrGenerated) {
                 const vCardData = `BEGIN:VCARD
 VERSION:3.0
 FN:Felippe Karp
-TEL;TYPE=CELL:+1-514-434-4189
-EMAIL:fkarp@oldscollege.ca
+TEL;TYPE=CELL:${decodePhone()}
+EMAIL:${decodeEmail()}
 URL:https://www.linkedin.com/in/felippe-karp/
 URL:https://orcid.org/0000-0001-6810-4656
 ORG:Olds College of Agriculture & Technology
 TITLE:Instructor & Researcher
 END:VCARD`;
 
-                new QRCode(document.getElementById(qrDiv), {
+                new QRCode(document.getElementById('qrcode'), {
                     text: vCardData,
                     width: 256,
-                                     height: 256,
+                    height: 256,
                     colorDark: "#0d1117",
                     colorLight: "#ffffff",
                     correctLevel: QRCode.CorrectLevel.H
                 });
-                
-                qrGenerated[currentLang] = true;
+
+                qrGenerated = true;
             }
-            
-            document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+
+            document.getElementById('qr-modal').classList.add('active');
         }
+
+        function closeQR(event) {
+            // When invoked from the backdrop, only close if the backdrop itself was clicked
+            if (event && event.type === 'click' && event.target !== event.currentTarget) return;
+            document.getElementById('qr-modal').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeQR();
+        });
     </script>
 </body>
 </html>
