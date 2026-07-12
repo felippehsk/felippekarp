@@ -1,1110 +1,1216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Felippe Karp - Digital Agriculture Leader</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <script>
-        // Apply saved theme before paint to avoid a flash of the wrong theme
-        (function() {
-            var saved = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', saved);
-        })();
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-dark: #0d1117;
-            --secondary-dark: #161b22;
-            --accent-green: #238636;
-            --accent-blue: #1f6feb;
-            --earth-brown: #8b6f47;
-            --light-bg: #f6f8fa;
-            --white: #ffffff;
-            --text-dark: #24292f;
-            --text-light: #57606a;
-            --border-gray: #30363d;
-
-            /* Theme-aware tokens (dark defaults) */
-            --page-bg: #0d1117;
-            --card-bg: #161b22;
-            --body-text: #c9d1d9;
-            --heading-text: #ffffff;
-            --item-bg: #0d1117;
-            --item-bg-hover: #161b22;
-            --item-border: #30363d;
-            --muted-text: #8b949e;
-            --link-color: #58a6ff;
-            --link-hover: #79c0ff;
-            --highlight-bg-1: #1c2128;
-            --highlight-bg-2: #161b22;
-            --btn-secondary-bg: #21262d;
-            --btn-secondary-border: #30363d;
-            --icon-fill: #8b949e;
-        }
-
-        html[data-theme="light"] {
-            --page-bg: #ffffff;
-            --card-bg: #ffffff;
-            --body-text: #24292f;
-            --heading-text: #24292f;
-            --item-bg: #f6f8fa;
-            --item-bg-hover: #eaeef2;
-            --item-border: #d0d7de;
-            --muted-text: #57606a;
-            --link-color: #0969da;
-            --link-hover: #0550ae;
-            --highlight-bg-1: #f6f8fa;
-            --highlight-bg-2: #ffffff;
-            --btn-secondary-bg: #eaeef2;
-            --btn-secondary-border: #d0d7de;
-            --icon-fill: #57606a;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--body-text);
-            background: var(--page-bg);
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .top-controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .language-toggle {
-            background: var(--white);
-            border-radius: 25px;
-            padding: 8px 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 10px;
-        }
-
-        .language-toggle button {
-            background: none;
-            border: none;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-weight: 600;
-            border-radius: 15px;
-            transition: all 0.3s;
-            color: var(--text-dark);
-        }
-
-        .language-toggle button.active {
-            background: var(--accent-green);
-            color: white;
-        }
-
-        .theme-toggle {
-            background: var(--white);
-            border-radius: 25px;
-            width: 42px;
-            height: 42px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.08);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
-            overflow: hidden;
-            margin-bottom: 30px;
-            border: 1px solid var(--item-border);
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: white;
-            padding: 60px 40px 40px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid var(--accent-green);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                /* Subtle tech grid */
-                linear-gradient(90deg, rgba(35, 134, 54, 0.03) 1px, transparent 1px),
-                linear-gradient(rgba(35, 134, 54, 0.03) 1px, transparent 1px),
-                /* Diagonal agricultural pattern */
-                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(35, 134, 54, 0.02) 30px, rgba(35, 134, 54, 0.02) 60px);
-            background-size: 40px 40px, 40px 40px, auto;
-            background-position: 0 0, 0 0, 0 0;
-            pointer-events: none;
-        }
-
-        .profile-img-container {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 6px solid white;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .title {
-            font-size: 1.2em;
-            opacity: 0.95;
-            font-weight: 400;
-            margin-bottom: 5px;
-        }
-
-        .tagline {
-            font-size: 1.1em;
-            opacity: 0.9;
-            font-style: italic;
-            margin-top: 15px;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 35px;
-        }
-
-        .section-title {
-            font-size: 1.4em;
-            color: var(--link-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--accent-green);
-            border-radius: 2px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--item-bg);
-            border-radius: 6px;
-            transition: all 0.3s;
-            border: 1px solid var(--item-border);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
-            border-color: var(--accent-green);
-            background: var(--item-bg-hover);
-        }
-
-        .contact-item a {
-            color: var(--link-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            color: var(--link-hover);
-        }
-
-        .contact-item span {
-            color: var(--muted-text);
-        }
-
-        .icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            fill: var(--icon-fill);
-        }
-
-        .icon-img {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, var(--highlight-bg-1) 0%, var(--highlight-bg-2) 100%);
-            border-left: 4px solid var(--accent-green);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid var(--item-border);
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .highlight-box h3 {
-            color: var(--link-color);
-            margin-bottom: 10px;
-        }
-
-        .highlight-box li {
-            color: var(--body-text);
-        }
-
-        .highlight-box li::before {
-            content: '✓';
-            color: var(--accent-green);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .highlight-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .highlight-box li {
-            padding: 8px 0;
-            display: flex;
-            align-items: start;
-            gap: 10px;
-        }
-
-        .highlight-box li::before {
-            content: '✓';
-            color: var(--accent-green);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .media-item {
-            padding: 15px;
-            background: var(--item-bg);
-            border-radius: 6px;
-            text-align: center;
-            transition: all 0.3s;
-            border: 1px solid var(--item-border);
-        }
-
-        .media-item:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-3px);
-            background: var(--item-bg-hover);
-        }
-
-        .media-item a {
-            color: var(--link-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .media-item a:hover {
-            color: var(--link-hover);
-        }
-
-        .media-item small {
-            color: var(--muted-text);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 15px;
-        }
-
-        .project-card {
-            padding: 16px;
-            background: var(--item-bg);
-            border-radius: 8px;
-            border: 1px solid var(--item-border);
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-            background: var(--item-bg-hover);
-        }
-
-        .project-card h4 {
-            color: var(--link-color);
-            font-size: 1em;
-            margin-bottom: 6px;
-        }
-
-        .project-card p {
-            color: var(--body-text);
-            font-size: 0.92em;
-            line-height: 1.5;
-        }
-
-        a.project-card {
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        a.project-card h4::after {
-            content: ' ↗';
-            font-size: 0.85em;
-            opacity: 0.55;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            margin: 8px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 2px solid;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--accent-green);
-            color: white;
-            border-color: var(--accent-green);
-        }
-
-        .btn-primary:hover {
-            background: #2ea043;
-            border-color: #2ea043;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(35, 134, 54, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--btn-secondary-bg);
-            color: var(--link-color);
-            border-color: var(--btn-secondary-border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--item-bg-hover);
-            color: var(--link-hover);
-            border-color: var(--link-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 166, 255, 0.3);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 28px;
-        }
-
-        .header-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 13px 26px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.98em;
-            cursor: pointer;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-        }
-
-        .header-btn svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .header-btn-primary {
-            background: var(--accent-green);
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(35, 134, 54, 0.45);
-        }
-
-        .header-btn-primary:hover {
-            background: #2ea043;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 26px rgba(35, 134, 54, 0.55);
-        }
-
-        .header-btn-secondary {
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.35);
-        }
-
-        .header-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-        }
-
-        /* QR modal */
-        .qr-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(4px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: qr-fade 0.2s ease;
-        }
-
-        .qr-modal.active {
-            display: flex;
-        }
-
-        @keyframes qr-fade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .qr-modal-content {
-            position: relative;
-            background: var(--card-bg);
-            border: 1px solid var(--item-border);
-            border-radius: 16px;
-            padding: 32px 32px 28px;
-            text-align: center;
-            max-width: 340px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .qr-modal-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: var(--heading-text);
-            margin-bottom: 6px;
-        }
-
-        .qr-modal-hint {
-            color: var(--muted-text);
-            font-size: 0.9em;
-            margin-top: 16px;
-        }
-
-        .qr-modal-close {
-            position: absolute;
-            top: 12px;
-            right: 14px;
-            background: none;
-            border: none;
-            font-size: 1.8em;
-            line-height: 1;
-            color: var(--muted-text);
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .qr-modal-close:hover {
-            color: var(--heading-text);
-        }
-
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        #qrcode img,
-        #qrcode canvas {
-            border-radius: 8px;
-        }
-
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            .header {
-                padding: 40px 20px 30px;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .profile-img-container {
-                width: 150px;
-                height: 150px;
-                font-size: 60px;
-            }
-
-            .top-controls {
-                top: 10px;
-                right: 10px;
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: var(--muted-text);
-            font-size: 0.9em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Felippe Karp — Digital Agriculture Leader</title>
+  <meta name="description" content="Instructor & Researcher at Olds College of Agriculture & Technology. Leading Canada's digital agriculture revolution.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+  <style>
+    :root {
+      --forest: #1f4f36;
+      --mint: #29c69a;
+      --gold: #c9a227;
+      --gold-soft: #d4b24a;
+
+      --bg: #0b1210;
+      --bg-glow: #13241c;
+      --surface: #121c17;
+      --surface-2: #18241e;
+      --border: #2a3d32;
+      --text: #e8efe9;
+      --muted: #8fa396;
+      --accent: var(--mint);
+      --stamp: var(--gold-soft);
+      --cta-bg: var(--forest);
+      --cta-text: #ffffff;
+      --chip-bg: transparent;
+      --chip-border: var(--border);
+      --chip-text: var(--text);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    html[data-theme="light"] {
+      --bg: #f3f6f4;
+      --bg-glow: #e4eee8;
+      --surface: #ffffff;
+      --surface-2: #eef3f0;
+      --border: #c9d6ce;
+      --text: #142018;
+      --muted: #5d7166;
+      --accent: var(--forest);
+      --stamp: #9a7a12;
+      --cta-bg: var(--forest);
+      --cta-text: #ffffff;
+      --chip-bg: #eef3f0;
+      --chip-border: #c9d6ce;
+      --chip-text: var(--forest);
+      --shadow: 0 16px 40px rgba(31, 79, 54, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, var(--bg-glow), transparent 70%),
+        linear-gradient(180deg, var(--bg) 0%, #0a100e 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      line-height: 1.55;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    ::selection { background: color-mix(in srgb, var(--mint) 35%, transparent); }
+
+    a { color: inherit; }
+
+    .top-controls {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .control-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    }
+
+    .control-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 72px 22px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      animation: rise 0.7s ease both;
+    }
+
+    .brand-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .profile {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid color-mix(in srgb, var(--mint) 55%, var(--border));
+    }
+
+    .identity-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .role-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--stamp);
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.25rem, 4vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .title-line {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .tagline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: left;
+      width: 100%;
+      border-left: 2px solid var(--stamp);
+      padding-left: 14px;
+      margin-top: 8px;
+      animation: rise 0.8s ease 0.08s both;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      animation: rise 0.8s ease 0.14s both;
+    }
+
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 14px;
+      border-radius: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: var(--cta-bg);
+      color: var(--cta-text);
+      box-shadow: 0 8px 22px color-mix(in srgb, var(--forest) 40%, transparent);
+    }
+
+    .btn-primary:hover {
+      background: #256344;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px color-mix(in srgb, var(--forest) 50%, transparent);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      animation: rise 0.75s ease 0.18s both;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: rise 0.7s ease both;
+    }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--stamp);
+    }
+
+    .section-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -6px;
+    }
+
+    .section-hint a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section-hint a:hover { text-decoration: underline; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--chip-text);
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .reveal-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      padding: 0;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .reveal-btn:hover,
+    .reveal-btn.revealed { color: var(--accent); }
+
+    a.reveal-btn { text-decoration: none; }
+
+    .reveal-btn svg,
+    .contact-loc svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.75;
+    }
+
+    .contact-loc {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .contact-loc:hover { color: var(--accent); }
+
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 6px;
+    }
+
+    .link-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .link-icon:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .link-icon svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    .link-icon img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .timeline-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 7px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--mint) 18%, transparent);
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-item {
+      display: block;
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: opacity 0.2s;
+    }
+
+    .project-item:first-child { padding-top: 2px; }
+    .project-item:hover { opacity: 0.85; }
+
+    .project-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .project-item h3::after {
+      content: ' ↗';
+      font-size: 0.85em;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .project-item.no-link h3::after { content: none; }
+
+    .project-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .acc-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .acc-item.open { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: none;
+      border: none;
+      padding: 13px 14px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .acc-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .acc-count {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--stamp);
+      background: var(--surface-2);
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+
+    .acc-chevron {
+      color: var(--muted);
+      font-size: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .acc-item.open .acc-chevron { transform: rotate(90deg); }
+
+    .acc-body {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 14px 14px;
+    }
+
+    .acc-item.open .acc-body { display: flex; }
+
+    .pub-item {
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pub-item a,
+    .pub-item .pub-title {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.4;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .pub-item a:hover { color: var(--accent); }
+
+    .pub-item a::after {
+      content: ' ↗';
+      font-size: 0.85em;
+      opacity: 0.65;
+    }
+
+    .pub-meta {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-list a {
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1.45;
+    }
+
+    .media-list a:hover { color: var(--accent); }
+
+    .media-list b { color: var(--accent); font-weight: 600; }
+
+    footer {
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* QR modal */
+    .qr-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fade 0.2s ease;
+    }
+
+    .qr-modal.active { display: flex; }
+
+    .qr-modal-content {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px 28px;
+      text-align: center;
+      max-width: 340px;
+      width: 100%;
+      box-shadow: var(--shadow);
+    }
+
+    .qr-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .qr-modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .qr-modal-hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    #qrcode img, #qrcode canvas {
+      border-radius: 8px;
+      background: #fff;
+      padding: 8px;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 64px 16px 64px; gap: 30px; }
+      .cta-row { flex-direction: column; }
+      .top-controls { top: 12px; right: 12px; }
+      .brand-logo { width: 100px; height: 100px; border-radius: 24px; }
+      .identity { gap: 12px; }
+      .profile { width: 84px; height: 84px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="top-controls">
-        <div class="language-toggle">
-            <button onclick="switchLang('en')" id="btn-en" class="active">English</button>
-            <button onclick="switchLang('pt')" id="btn-pt">Português</button>
-        </div>
-        <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+  <div class="top-controls">
+    <button class="control-btn" id="lang-btn" type="button" aria-label="Switch language">PT</button>
+    <button class="control-btn" id="theme-btn" type="button" aria-label="Toggle theme">☀</button>
+  </div>
+
+  <main class="page" id="app">
+    <!-- rendered by script -->
+  </main>
+
+  <div id="qr-modal" class="qr-modal" onclick="closeQR(event)">
+    <div class="qr-modal-content">
+      <button class="qr-modal-close" onclick="closeQR()" aria-label="Close">&times;</button>
+      <div class="qr-modal-title" id="qr-modal-title">Scan to Save Contact</div>
+      <div id="qrcode"></div>
+      <p class="qr-modal-hint" id="qr-modal-hint">Point your phone camera at the code to save the contact.</p>
     </div>
+  </div>
 
-    <div class="container">
-        <div class="card">
-            <div class="header">
-                <div class="profile-img-container">
-                    <img src="assets/images/profile.jpg" alt="Dr. Felippe Karp">
-                </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const EN = {
+      roleLabel: 'INSTRUCTOR & RESEARCHER',
+      name: 'Dr. Felippe Hoffmann Silva Karp',
+      title: 'Instructor & Researcher',
+      institution: 'Olds College of Agriculture & Technology',
+      tagline: "Leading Canada's Digital Agriculture Revolution",
+      saveContact: 'Save Contact',
+      showQr: 'Show QR Code',
+      focusLabel: 'R&D FOCUS',
+      revealEmail: 'Click to reveal email',
+      revealPhone: 'Click to reveal phone',
+      location: 'Olds, Alberta, Canada',
+      linkedIn: 'LinkedIn',
+      scholar: 'Google Scholar',
+      orcid: 'ORCID',
+      github: 'GitHub',
+      faculty: 'Faculty Profile',
+      academicLabel: 'ACADEMIC BACKGROUND',
+      projectsLabel: 'KEY PROJECTS & ACHIEVEMENTS',
+      pubSectionLabel: 'PUBLICATIONS',
+      pubHint: 'Selected peer-reviewed journal articles',
+      fundingLabel: 'RESEARCH FUNDING',
+      awardsLabel: 'HONORS & AWARDS',
+      awardsHint: 'Graduation awards, ESALQ/USP Class of 2018 (ceremony January 2019). Official names and criteria:',
+      awardsLinkLabel: 'ESALQ Awards',
+      ceremonyLabel: 'Degree ceremony bulletin',
+      mediaLabel: 'MEDIA FEATURES',
+      footer: '© 2026 Dr. Felippe Karp. Transforming agriculture through technology and innovation.',
+      qrTitle: 'Scan to Save Contact',
+      qrHint: 'Point your phone camera at the code to save the contact.',
+      academic: [
+        'PhD in Bioresource Engineering, McGill University, Canada',
+        'MSc in Plant, Environment, and Soil Sciences (focus on Precision Ag), Louisiana State University, USA',
+        'BSc in Agronomic Engineering, School of Agriculture "Luiz de Queiroz", University of São Paulo, Brazil',
+      ],
+      projects: [
+        { title: 'HyperLayer Data Platform', desc: 'Continuing to support the integration of multi-layer farm data with AI predictions for precision agriculture.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the scientific analysis for a multi-year on-farm experimentation program across Alberta and Saskatchewan.', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'Olds College Smart Farm Research', desc: 'Supporting research with >4 terabytes of agricultural data from a 2,800-acre real-world farming operation.', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
+        { title: 'McGill-TELUS-Olds College Partnership', desc: 'Joint research collaboration on agricultural data integration.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
+        { title: 'Data Standards Development', desc: 'Developing standards for agricultural data collection and processing for AI model training.' },
+      ],
+      focus: [
+        'Digital & Precision Agriculture',
+        'Artificial Intelligence in Farming',
+        'Multi-Source Data Fusion',
+        'Proximal & Remote Sensing',
+        'Agricultural Machinery & Technology',
+      ],
+      media: [
+        { source: 'Olds College News', desc: 'HyperLayer Project Sparks Hopes for AI Farm Assistant', url: 'https://www.oldscollege.ca/news-events/news/2025/hyperlayer-project-sparks-hopes-for-ai-farm-assistant.html' },
+        { source: 'The Globe and Mail', desc: 'AI in Agriculture Coverage', url: 'https://www.theglobeandmail.com/business/article-how-ai-could-help-farming-become-more-efficient-and-sustainable/' },
+        { source: 'CityNews Calgary', desc: 'How AI Could Help Farming Become More Efficient', url: 'https://calgary.citynews.ca/2024/06/16/how-ai-could-help-farming-become-more-efficient-and-sustainable/' },
+        { source: 'Global News', desc: 'Featured Expert', url: 'https://globalnews.ca/news/10570807/ai-farming-canada-technology/' },
+        { source: 'GrainsWest', desc: 'Digital Farmhand Article', url: 'https://grainswest.com/2025/09/the-making-of-a-digital-farmhand/' },
+        { source: 'Country Guide', desc: 'AI for Data Analysis in Agriculture', url: 'https://www.country-guide.ca/features/ai-for-data-analysis/' },
+        { source: 'McGill Channels', desc: 'AI & Sustainability', url: 'https://www.mcgill.ca/channels/channels/news/how-ai-could-help-farming-become-more-efficient-and-sustainable-357745' },
+        { source: 'TELUS Blog', desc: 'Investing in Agtech Innovation with Olds College Smart Farm', url: 'https://www.telus.com/agcg/en/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
+      ],
+      funding: [
+        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Principal Investigator — $500,000. Further development of tools for the HyperLayer and AgExpert platform to support farmers and agronomists with automated data processing frameworks.' },
+        { title: 'Introduction of On-Farm Precision Experimentation (OFPE) to Alberta Farms', meta: 'Results Driven Agriculture Research (RDAR) — $225,000, 2 yrs' },
+        { title: 'Agricultural Multi-Layer Data Fusion for Cloud-Based Advisory Services', meta: 'Mitacs Accelerate, w/ TELUS & Olds College — $120,000, 2021–2023' },
+        { title: 'Measurement Capacity of Geometry Parameters in Coffee Fields by LiDAR Sensor', meta: 'São Paulo Research Foundation (FAPESP) — $1,800, 2016–2017' },
+      ],
+      awards: [
+        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — highest final GPA in Agronomic Engineering, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — highest GPA in the phytopathology / microbiology course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — sustainable agriculture course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — statewide recognition of top technology graduates, Class of 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
+        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — $25,000, 2021' },
+        { title: '2nd Place, Student Presentation', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
+        { title: '2nd Place, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
+        { title: 'George H. Cook Scholar — Honors Thesis Presentation', meta: 'USP–Rutgers partnership / SIICUSP, 2016' },
+      ],
+    };
 
-                
-                <!-- English Content -->
-                <div class="lang-content active" id="content-en">
-                    <h1>Dr. Felippe Hoffmann Silva Karp</h1>
-                    <div class="title">Instructor & Researcher</div>
-                    <div class="title">Olds College of Agriculture & Technology</div>
-                    <div class="tagline">Leading Canada's Digital Agriculture Revolution</div>
-                    <div class="header-actions">
-                        <a href="#" class="header-btn header-btn-primary" onclick="downloadVCard(); return false;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            Save Contact (vCard)
-                        </a>
-                        <a href="#" class="header-btn header-btn-secondary" onclick="generateQR(); return false;">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
-                            Show QR Code
-                        </a>
-                    </div>
-                </div>
+    const PT = {
+      roleLabel: 'INSTRUTOR E PESQUISADOR',
+      name: 'Dr. Felippe Hoffmann Silva Karp',
+      title: 'Instrutor e Pesquisador',
+      institution: 'Olds College of Agriculture & Technology',
+      tagline: 'À frente da revolução da agricultura digital no Canadá',
+      saveContact: 'Salvar Contato',
+      showQr: 'Exibir QR Code',
+      focusLabel: 'ÁREAS DE P&D',
+      revealEmail: 'Clique para revelar o e-mail',
+      revealPhone: 'Clique para revelar o telefone',
+      location: 'Olds, Alberta, Canadá',
+      linkedIn: 'LinkedIn',
+      scholar: 'Google Acadêmico',
+      orcid: 'ORCID',
+      github: 'GitHub',
+      faculty: 'Perfil Institucional',
+      academicLabel: 'FORMAÇÃO ACADÊMICA',
+      projectsLabel: 'PRINCIPAIS PROJETOS E REALIZAÇÕES',
+      pubSectionLabel: 'PRODUÇÃO CIENTÍFICA',
+      pubHint: 'Artigos selecionados em periódicos com revisão por pares',
+      fundingLabel: 'FINANCIAMENTO DE PESQUISA',
+      awardsLabel: 'PRÊMIOS E HONRARIAS',
+      awardsHint: 'Prêmios de formatura, ESALQ/USP Classe 2018 (cerimônia em janeiro de 2019). Nomes oficiais e critérios:',
+      awardsLinkLabel: 'Prêmios da ESALQ',
+      ceremonyLabel: 'Boletim da colação de grau',
+      mediaLabel: 'REPERCUSSÃO NA MÍDIA',
+      footer: '© 2026 Dr. Felippe Karp. Transformando a agricultura por meio de tecnologia e inovação.',
+      qrTitle: 'Escaneie para salvar o contato',
+      qrHint: 'Aponte a câmera do celular para o código e salve o contato.',
+      academic: [
+        'Doutorado em Engenharia de Biossistemas, McGill University, Canadá',
+        'Mestrado em Ciências de Plantas, Ambiente e Solo (ênfase em Agricultura de Precisão), Louisiana State University, Estados Unidos',
+        'Graduação em Engenharia Agronômica, Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ/USP), Brasil',
+      ],
+      projects: [
+        { title: 'Plataforma HyperLayer', desc: 'Integração de múltiplas camadas de dados agrícolas com predições de IA para a agricultura de precisão.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Coordenação da análise científica de um programa multianual de ensaios a campo em Alberta e Saskatchewan.', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'Pesquisa Smart Farm — Olds College', desc: 'Pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
+        { title: 'Parceria McGill-TELUS-Olds College', desc: 'Pesquisa conjunta entre McGill, TELUS e Olds College na integração de dados agrícolas.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
+        { title: 'Desenvolvimento de Padrões de Dados', desc: 'Criação de padrões para coleta e processamento de dados agrícolas no treinamento de modelos de IA.' },
+      ],
+      focus: [
+        'Agricultura Digital & de Precisão',
+        'Inteligência Artificial na Agricultura',
+        'Fusão de Dados',
+        'Sensoriamento Proximal & Remoto',
+        'Maquinário & Tecnologia Agrícola',
+      ],
+      media: [
+        { source: 'Olds College News', desc: 'Projeto HyperLayer e o assistente de fazenda com IA', url: 'https://www.oldscollege.ca/news-events/news/2025/hyperlayer-project-sparks-hopes-for-ai-farm-assistant.html' },
+        { source: 'The Globe and Mail', desc: 'Cobertura sobre IA na Agricultura', url: 'https://www.theglobeandmail.com/business/article-how-ai-could-help-farming-become-more-efficient-and-sustainable/' },
+        { source: 'CityNews Calgary', desc: 'Como a IA pode tornar a agricultura mais eficiente', url: 'https://calgary.citynews.ca/2024/06/16/how-ai-could-help-farming-become-more-efficient-and-sustainable/' },
+        { source: 'Global News', desc: 'Especialista em Destaque', url: 'https://globalnews.ca/news/10570807/ai-farming-canada-technology/' },
+        { source: 'GrainsWest', desc: 'Reportagem "Digital Farmhand"', url: 'https://grainswest.com/2025/09/the-making-of-a-digital-farmhand/' },
+        { source: 'Country Guide', desc: 'IA para análise de dados na agricultura', url: 'https://www.country-guide.ca/features/ai-for-data-analysis/' },
+        { source: 'McGill Channels', desc: 'IA e sustentabilidade', url: 'https://www.mcgill.ca/channels/channels/news/how-ai-could-help-farming-become-more-efficient-and-sustainable-357745' },
+        { source: 'Blog TELUS', desc: 'Investimento em inovação agtech com a Smart Farm do Olds College', url: 'https://www.telus.com/agcg/en/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
+      ],
+      funding: [
+        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Pesquisador Principal — US$ 500.000. Desenvolvimento contínuo de ferramentas para as plataformas HyperLayer e AgExpert, apoiando produtores e agrônomos com frameworks automatizados de processamento de dados.' },
+        { title: 'Introdução da Experimentação de Precisão a Campo (OFPE) em fazendas de Alberta', meta: 'Results Driven Agriculture Research (RDAR) — US$ 225.000, 2 anos' },
+        { title: 'Fusão de Dados Agrícolas Multicamadas para Serviços de Consultoria em Nuvem', meta: 'Mitacs Accelerate, com TELUS & Olds College — US$ 120.000, 2021–2023' },
+        { title: 'Capacidade de Medição de Parâmetros Geométricos em Cafezais por Sensor LiDAR', meta: 'FAPESP — US$ 1.800, 2016–2017' },
+      ],
+      awards: [
+        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — maior média na classificação final do curso de Engenharia Agronômica, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — maior média no conjunto de disciplinas de fitopatologia / microbiologia (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — conjunto de disciplinas de agricultura sustentável (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — reconhecimento estadual aos formandos da área tecnológica, Classe 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
+        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — US$ 25.000, 2021' },
+        { title: '2º lugar, Apresentação Estudantil', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
+        { title: '2º lugar, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
+        { title: 'George H. Cook Scholar — Apresentação de monografia de honra', meta: 'Parceria USP–Rutgers / SIICUSP, 2016' },
+      ],
+    };
 
-                <!-- Portuguese Content -->
-                <div class="lang-content" id="content-pt">
-                    <h1>Dr. Felippe Hoffmann Silva Karp</h1>
-                    <div class="title">Instrutor & Pesquisador</div>
-                    <div class="title">Olds College of Agriculture & Technology</div>
-                    <div class="tagline">Liderando a revolução da agricultura digital no Canadá</div>
-                    <div class="header-actions">
-                        <a href="#" class="header-btn header-btn-primary" onclick="downloadVCard(); return false;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            Salvar Contato (vCard)
-                        </a>
-                        <a href="#" class="header-btn header-btn-secondary" onclick="generateQR(); return false;">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
-                            Mostrar QR Code
-                        </a>
-                    </div>
-                </div>
+    const PUBLICATIONS = [
+      {
+        key: 'journal',
+        labelEN: 'Journal Articles',
+        labelPT: 'Artigos em Periódicos',
+        items: [
+          { title: 'Comparative study of interpolation methods for low-density sampling', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck — Precision Agriculture, 25(6), 2024', url: 'https://doi.org/10.1007/s11119-024-10141-0' },
+          { title: 'Validation and potential improvement of soil survey maps using proximal soil sensing', meta: 'Karp, Adamchuk, Melnitchouck, Allred, Dutilleul, Martinez — J. of Environmental and Engineering Geophysics, 2023', url: 'https://doi.org/10.32389/JEEG22-018' },
+          { title: 'Yield mapping methods for manually harvested crops', meta: 'Colaço, Trevisan, Karp, Molin — Computers and Electronics in Agriculture, 177, 2020', url: 'https://doi.org/10.1016/j.compag.2020.105693' },
+          { title: 'Ammonia volatilization losses from urea coated with copper, boron, and selenium', meta: 'Faria, Karp, Machado, Abdalla — Semina: Ciências Agrárias, 41(4), 2020', url: 'https://doi.org/10.5433/1679-0359.2020v41n4p1415' },
+          { title: 'Nutritional quality and organic matter degradability of Brachiaria spp. agronomically biofortified with selenium', meta: 'Faria, Karp, et al. — J. of Animal Physiology and Animal Nutrition, 102(6), 2018', url: 'https://doi.org/10.1111/jpn.12971' },
+          { title: 'Brachiaria enrichment with selenium-coated urea', meta: 'Faria, Machado, Karp, et al. — Ciência Rural, 48(6), 2018', url: 'https://doi.org/10.1590/0103-8478cr20170630' },
+        ],
+      },
+    ];
+
+    const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Werklund%20School%20of%20Agriculture%20%26%20Technology%2C%20Olds%20College%2C%20Olds%2C%20AB';
+    const LINKS = {
+      linkedIn: 'https://www.linkedin.com/in/felippe-karp/',
+      scholar: 'https://scholar.google.com/citations?hl=en&user=RO-lEhwAAAAJ',
+      orcid: 'https://orcid.org/0000-0001-6810-4656',
+      github: 'https://github.com/felippehsk',
+      faculty: 'https://www.oldscollege.ca/about-us/faculty/felippe-karp.html',
+    };
+
+    function iconLinkedIn() {
+      return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
+    }
+
+    function iconScholar() {
+      return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>';
+    }
+
+    function iconOrcid() {
+      return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.946-.422-.946-.947 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>';
+    }
+
+    function iconGitHub() {
+      return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>';
+    }
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+    let emailRevealed = false;
+    let phoneRevealed = false;
+    let qrGenerated = false;
+    const AWARDS_PAGE = 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq';
+    const CEREMONY_PAGE = 'https://www.esalq.usp.br/boletim/esalq-realiza-sess%C3%A3o-solene-de-cola%C3%A7%C3%A3o-de-grau-da-classe-de-2018';
+
+    const openPubs = {};
+    let fundingOpen = false;
+    let awardsOpen = false;
+
+    function decodeEmail() {
+      return atob('ZmthcnBAb2xkc2NvbGxlZ2UuY2E=');
+    }
+
+    function decodePhone() {
+      return atob('KzEtNTE0LTQzNC00MTg5');
+    }
+
+    function t() {
+      return currentLang === 'en' ? EN : PT;
+    }
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function iconMail() {
+      return '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>';
+    }
+
+    function iconPhone() {
+      return '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>';
+    }
+
+    function iconPin() {
+      return '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>';
+    }
+
+    function iconDownload() {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+    }
+
+    function iconQr() {
+      return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>';
+    }
+
+    function renderPubItem(pub) {
+      const title = pub.url
+        ? `<a href="${esc(pub.url)}" target="_blank" rel="noopener">${esc(pub.title)}</a>`
+        : `<span class="pub-title">${esc(pub.title)}</span>`;
+      return `<div class="pub-item">${title}<div class="pub-meta">${esc(pub.meta)}</div></div>`;
+    }
+
+    function render() {
+      const c = t();
+      const emailText = emailRevealed ? decodeEmail() : c.revealEmail;
+      const phoneText = phoneRevealed ? decodePhone() : c.revealPhone;
+      const labelKey = currentLang === 'en' ? 'labelEN' : 'labelPT';
+
+      const chips = c.focus.map((f) => `<span class="chip">${esc(f)}</span>`).join('');
+      const academic = c.academic.map((a) =>
+        `<div class="timeline-item"><span class="timeline-dot"></span><div>${esc(a)}</div></div>`
+      ).join('');
+
+      const projects = c.projects.map((p) => {
+        if (p.url) {
+          return `<a class="project-item" href="${esc(p.url)}" target="_blank" rel="noopener"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></a>`;
+        }
+        return `<div class="project-item no-link"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></div>`;
+      }).join('');
+
+      const pubs = PUBLICATIONS.map((cat) => {
+        const open = !!openPubs[cat.key];
+        return `
+          <div class="acc-item${open ? ' open' : ''}" data-pub="${esc(cat.key)}">
+            <button class="acc-trigger" type="button" onclick="togglePub('${esc(cat.key)}')" aria-expanded="${open}">
+              <span>${esc(cat[labelKey])}</span>
+              <span class="acc-meta">
+                <span class="acc-count">${cat.items.length}</span>
+                <span class="acc-chevron" aria-hidden="true">▸</span>
+              </span>
+            </button>
+            <div class="acc-body">${cat.items.map(renderPubItem).join('')}</div>
+          </div>`;
+      }).join('');
+
+      const fundingItems = c.funding.map((f) =>
+        `<div class="pub-item"><span class="pub-title">${esc(f.title)}</span><div class="pub-meta">${esc(f.meta)}</div></div>`
+      ).join('');
+
+      const awards = c.awards.map(renderPubItem).join('');
+
+      const media = c.media.map((m) =>
+        `<a href="${esc(m.url)}" target="_blank" rel="noopener"><b>${esc(m.source)}</b> — ${esc(m.desc)}</a>`
+      ).join('');
+
+      document.getElementById('app').innerHTML = `
+        <header class="hero">
+          <img class="brand-logo" src="assets/images/fk-logo.png" alt="FK — Felippe Karp" width="120" height="120">
+          <div class="identity">
+            <img class="profile" src="assets/images/profile.jpg" alt="Dr. Felippe Karp" width="96" height="96">
+            <div class="identity-text">
+              <div class="role-label">${esc(c.roleLabel)}</div>
+              <h1>${esc(c.name)}</h1>
+              <div class="title-line">${esc(c.institution)}</div>
             </div>
+          </div>
+        </header>
 
-            <div class="content">
-                <!-- English Content -->
-                <div class="lang-content active" id="contact-en">
-                    <div class="section">
-                        <div class="section-title">Contact Information</div>
-                        <div class="contact-grid">
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-                                <a href="#" id="email-link" onclick="showEmail('email-link'); return false;">Click to reveal email</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                                <a href="#" id="phone-link" onclick="showPhone('phone-link'); return false;">Click to reveal phone</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-                                <a href="https://www.google.com/maps/search/?api=1&amp;query=Werklund%20School%20of%20Agriculture%20%26%20Technology%2C%20Olds%20College%2C%20Olds%2C%20AB" target="_blank" rel="noopener">Olds, Alberta, Canada</a>
-                            </div>
-                        </div>
-                    </div>
+        <p class="tagline">${esc(c.tagline)}</p>
 
-                    <div class="section">
-                        <div class="section-title">Professional Links</div>
-                        <div class="contact-grid">
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                <a href="https://www.linkedin.com/in/felippe-karp/" target="_blank">LinkedIn Profile</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
-                                <a href="https://scholar.google.com/citations?hl=en&user=RO-lEhwAAAAJ" target="_blank">Google Scholar</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.946-.422-.946-.947 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
-                                <a href="https://orcid.org/0000-0001-6810-4656" target="_blank">ORCID</a>
-                            </div>
-                            <div class="contact-item">
-                                <img class="icon-img" src="assets/images/olds-college-logo.png" alt="Olds College logo">
-                                <a href="https://www.oldscollege.ca/about-us/faculty/felippe-karp.html" target="_blank">Faculty Profile</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="highlight-box">
-                            <h3>🎓 Academic Background</h3>
-                            <ul>
-                                <li>PhD in Bioresource Engineering, McGill University, Canada</li>
-                                <li>MSc in Plant, Environment, and Soil Sciences (focus on Precision Ag), Louisiana State University, USA</li>
-                                <li>BSc in Agronomic Engineering, School of Agriculture "Luiz de Queiroz", University of São Paulo, Brazil</li>
-                            </ul>
-                        </div>
-
-                        <div class="highlight-box">
-                            <h3>🚀 Key Projects & Achievements</h3>
-                            <div class="project-grid">
-                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html" target="_blank" rel="noopener">
-                                    <h4>HyperLayer Data Platform</h4>
-                                    <p>Continuing to support the integration of multi-layer farm data with AI predictions for precision agriculture.</p>
-                                </a>
-                                <a class="project-card" href="https://ofpeprairiesca.github.io/" target="_blank" rel="noopener">
-                                    <h4>On-Farm Precision Experimentation in the Prairies</h4>
-                                    <p>Led the scientific analysis for a multi-year on-farm experimentation program across Alberta and Saskatchewan.</p>
-                                </a>
-                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/index.html" target="_blank" rel="noopener">
-                                    <h4>Olds College Smart Farm Research</h4>
-                                    <p>Supporting research with &gt;4 terabytes of agricultural data from a 2,800-acre real-world farming operation.</p>
-                                </a>
-                                <a class="project-card" href="https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm" target="_blank" rel="noopener">
-                                    <h4>McGill-TELUS-Olds College Partnership</h4>
-                                    <p>Joint research collaboration on agricultural data integration.</p>
-                                </a>
-                                <div class="project-card">
-                                    <h4>Data Standards Development</h4>
-                                    <p>Developing standards for agricultural data collection and processing for AI model training.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="highlight-box">
-                            <h3>🎯 Research Focus</h3>
-                            <ul>
-                                <li>Digital & Precision Agriculture</li>
-                                <li>Artificial Intelligence in Farming</li>
-                                <li>Multi-Source Data Fusion</li>
-                                <li>Proximal & Remote Sensing</li>
-                                <li>Agricultural Machinery & Technology</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="section-title">Media Features</div>
-                        <div class="media-grid">
-                            <div class="media-item">
-                                <a href="https://www.theglobeandmail.com/business/article-how-ai-could-help-farming-become-more-efficient-and-sustainable/" target="_blank">
-                                    <strong>The Globe and Mail</strong><br>
-                                    <small>AI in Agriculture Coverage</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://globalnews.ca/news/10570807/ai-farming-canada-technology/" target="_blank">
-                                    <strong>Global News</strong><br>
-                                    <small>Featured Expert</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://grainswest.com/2025/09/the-making-of-a-digital-farmhand/" target="_blank">
-                                    <strong>GrainsWest</strong><br>
-                                    <small>Digital Farmhand Article</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://www.mcgill.ca/channels/channels/news/how-ai-could-help-farming-become-more-efficient-and-sustainable-357745" target="_blank">
-                                    <strong>McGill Channels</strong><br>
-                                    <small>AI & Sustainability</small>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Portuguese Content -->
-                <div class="lang-content" id="contact-pt">
-                    <div class="section">
-                        <div class="section-title">Informações de Contato</div>
-                        <div class="contact-grid">
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-                                <a href="#" id="email-link-pt" onclick="showEmail('email-link-pt'); return false;">Clique para revelar o e-mail</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                                <a href="#" id="phone-link-pt" onclick="showPhone('phone-link-pt'); return false;">Clique para revelar o telefone</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-                                <a href="https://www.google.com/maps/search/?api=1&amp;query=Werklund%20School%20of%20Agriculture%20%26%20Technology%2C%20Olds%20College%2C%20Olds%2C%20AB" target="_blank" rel="noopener">Olds, Alberta, Canadá</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="section-title">Links Profissionais</div>
-                        <div class="contact-grid">
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                <a href="https://www.linkedin.com/in/felippe-karp/" target="_blank">Perfil no LinkedIn</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
-                                <a href="https://scholar.google.com/citations?hl=en&user=RO-lEhwAAAAJ" target="_blank">Google Acadêmico</a>
-                            </div>
-                            <div class="contact-item">
-                                <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947-.525 0-.946-.422-.946-.947 0-.516.421-.947.946-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
-                                <a href="https://orcid.org/0000-0001-6810-4656" target="_blank">ORCID</a>
-                            </div>
-                            <div class="contact-item">
-                                <img class="icon-img" src="assets/images/olds-college-logo.png" alt="Olds College logo">
-                                <a href="https://www.oldscollege.ca/about-us/faculty/felippe-karp.html" target="_blank">Perfil Institucional</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="highlight-box">
-                            <h3>🎓 Formação Acadêmica</h3>
-                            <ul>
-                                <li>Doutorado em Engenharia de Biossistemas, McGill University, Canadá</li>
-                                <li>Mestrado em Ciências de Plantas, Ambiente e Solo (ênfase em Agricultura de Precisão), Louisiana State University, Estados Unidos</li>
-                                <li>Graduação em Engenharia Agronômica, Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ/USP), Brasil</li>
-                            </ul>
-                        </div>
-
-                        <div class="highlight-box">
-                            <h3>🚀 Principais Projetos & Conquistas</h3>
-                            <div class="project-grid">
-                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html" target="_blank" rel="noopener">
-                                    <h4>Plataforma HyperLayer</h4>
-                                    <p>Integração de múltiplas camadas de dados agrícolas com predições de IA para a agricultura de precisão.</p>
-                                </a>
-                                <a class="project-card" href="https://ofpeprairiesca.github.io/" target="_blank" rel="noopener">
-                                    <h4>Experimentação de Precisão a Campo nas Pradarias</h4>
-                                    <p>Coordenação da análise científica de um programa multianual de ensaios a campo em Alberta e Saskatchewan.</p>
-                                </a>
-                                <a class="project-card" href="https://www.oldscollege.ca/smart-farm-research/index.html" target="_blank" rel="noopener">
-                                    <h4>Pesquisa Smart Farm — Olds College</h4>
-                                    <p>Pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).</p>
-                                </a>
-                                <a class="project-card" href="https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm" target="_blank" rel="noopener">
-                                    <h4>Parceria McGill-TELUS-Olds College</h4>
-                                    <p>Pesquisa conjunta entre McGill, TELUS e Olds College na integração de dados agrícolas.</p>
-                                </a>
-                                <div class="project-card">
-                                    <h4>Desenvolvimento de Padrões de Dados</h4>
-                                    <p>Criação de padrões para coleta e processamento de dados agrícolas no treinamento de modelos de IA.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="highlight-box">
-                            <h3>🎯 Linhas de Pesquisa</h3>
-                            <ul>
-                                <li>Agricultura Digital & de Precisão</li>
-                                <li>Inteligência Artificial na Agricultura</li>
-                                <li>Fusão de Dados</li>
-                                <li>Sensoriamento Proximal & Remoto</li>
-                                <li>Maquinário & Tecnologia Agrícola</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <div class="section-title">Cobertura na Mídia</div>
-                        <div class="media-grid">
-                            <div class="media-item">
-                                <a href="https://www.theglobeandmail.com/business/article-how-ai-could-help-farming-become-more-efficient-and-sustainable/" target="_blank">
-                                    <strong>The Globe and Mail</strong><br>
-                                    <small>Cobertura sobre IA na Agricultura</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://globalnews.ca/news/10570807/ai-farming-canada-technology/" target="_blank">
-                                    <strong>Global News</strong><br>
-                                    <small>Especialista em Destaque</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://grainswest.com/2025/09/the-making-of-a-digital-farmhand/" target="_blank">
-                                    <strong>GrainsWest</strong><br>
-                                    <small>Reportagem "Digital Farmhand"</small>
-                                </a>
-                            </div>
-                            <div class="media-item">
-                                <a href="https://www.mcgill.ca/channels/channels/news/how-ai-could-help-farming-become-more-efficient-and-sustainable-357745" target="_blank">
-                                    <strong>McGill Channels</strong><br>
-                                    <small>IA & Sustentabilidade</small>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div class="cta-row">
+          <button class="btn btn-primary" type="button" onclick="downloadVCard()">${iconDownload()} ${esc(c.saveContact)}</button>
+          <button class="btn btn-secondary" type="button" onclick="generateQR()">${iconQr()} ${esc(c.showQr)}</button>
         </div>
 
-        <footer>
-            <div class="lang-content active" id="footer-en">
-                <p>&copy; 2025 Dr. Felippe Karp. Transforming agriculture through technology and innovation.</p>
+        <section class="panel" aria-label="${esc(c.focusLabel)}">
+          <div class="section-label">${esc(c.focusLabel)}</div>
+          <div class="chips">${chips}</div>
+        </section>
+
+        <section class="section" aria-label="Contact">
+          <div class="contact-list">
+            ${emailRevealed
+              ? `<a class="reveal-btn revealed" href="mailto:${esc(decodeEmail())}">${iconMail()} <span>${esc(decodeEmail())}</span></a>`
+              : `<button class="reveal-btn" id="email-btn" type="button" onclick="revealEmail()">${iconMail()} <span id="email-text">${esc(emailText)}</span></button>`}
+            ${phoneRevealed
+              ? `<a class="reveal-btn revealed" href="tel:${esc(decodePhone().replace(/-/g, ''))}">${iconPhone()} <span>${esc(decodePhone())}</span></a>`
+              : `<button class="reveal-btn" id="phone-btn" type="button" onclick="revealPhone()">${iconPhone()} <span id="phone-text">${esc(phoneText)}</span></button>`}
+            <a class="contact-loc" href="${MAPS_URL}" target="_blank" rel="noopener">${iconPin()} ${esc(c.location)}</a>
+            <div class="links-row">
+              <a class="link-icon" href="${LINKS.linkedIn}" target="_blank" rel="noopener" title="${esc(c.linkedIn)}" aria-label="${esc(c.linkedIn)}">${iconLinkedIn()}</a>
+              <a class="link-icon" href="${LINKS.scholar}" target="_blank" rel="noopener" title="${esc(c.scholar)}" aria-label="${esc(c.scholar)}">${iconScholar()}</a>
+              <a class="link-icon" href="${LINKS.orcid}" target="_blank" rel="noopener" title="${esc(c.orcid)}" aria-label="${esc(c.orcid)}">${iconOrcid()}</a>
+              <a class="link-icon" href="${LINKS.github}" target="_blank" rel="noopener" title="${esc(c.github)}" aria-label="${esc(c.github)}">${iconGitHub()}</a>
+              <a class="link-icon" href="${LINKS.faculty}" target="_blank" rel="noopener" title="${esc(c.faculty)}" aria-label="${esc(c.faculty)}"><img src="assets/images/olds-college-logo.png" alt=""></a>
             </div>
-            <div class="lang-content" id="footer-pt">
-                <p>&copy; 2025 Dr. Felippe Karp. Transformando a agricultura por meio de tecnologia e inovação.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label">${esc(c.academicLabel)}</div>
+          <div class="timeline">${academic}</div>
+        </section>
+
+        <section class="section">
+          <div class="section-label">${esc(c.projectsLabel)}</div>
+          <div class="project-list">${projects}</div>
+        </section>
+
+        <section class="section">
+          <div class="section-label">${esc(c.pubSectionLabel)}</div>
+          <p class="section-hint">${esc(c.pubHint)}</p>
+          <div class="accordion">${pubs}</div>
+        </section>
+
+        <section class="section">
+          <div class="acc-item${fundingOpen ? ' open' : ''}">
+            <button class="acc-trigger" type="button" onclick="toggleFunding()" aria-expanded="${fundingOpen}">
+              <span>${esc(c.fundingLabel)}</span>
+              <span class="acc-meta">
+                <span class="acc-count">${c.funding.length}</span>
+                <span class="acc-chevron" aria-hidden="true">▸</span>
+              </span>
+            </button>
+            <div class="acc-body">${fundingItems}</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="acc-item${awardsOpen ? ' open' : ''}">
+            <button class="acc-trigger" type="button" onclick="toggleAwards()" aria-expanded="${awardsOpen}">
+              <span>${esc(c.awardsLabel)}</span>
+              <span class="acc-meta">
+                <span class="acc-count">${c.awards.length}</span>
+                <span class="acc-chevron" aria-hidden="true">▸</span>
+              </span>
+            </button>
+            <div class="acc-body">
+              <p class="section-hint" style="margin:0 0 4px; padding-top:2px;">
+                ${esc(c.awardsHint)}
+                <a href="${AWARDS_PAGE}" target="_blank" rel="noopener">${esc(c.awardsLinkLabel)}</a>
+                ·
+                <a href="${CEREMONY_PAGE}" target="_blank" rel="noopener">${esc(c.ceremonyLabel)}</a>
+              </p>
+              ${awards}
             </div>
-        </footer>
-    </div>
+          </div>
+        </section>
 
-    <!-- QR Code modal -->
-    <div id="qr-modal" class="qr-modal" onclick="closeQR(event)">
-        <div class="qr-modal-content">
-            <button class="qr-modal-close" onclick="closeQR()" aria-label="Close">&times;</button>
-            <div class="qr-modal-title" id="qr-modal-title">Scan to Save Contact</div>
-            <div id="qrcode"></div>
-            <p class="qr-modal-hint" id="qr-modal-hint">Point your phone camera at the code to save the contact.</p>
-        </div>
-    </div>
+        <section class="section">
+          <div class="section-label">${esc(c.mediaLabel)}</div>
+          <div class="media-list">${media}</div>
+        </section>
 
-    <!-- QR Code Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        <footer>${esc(c.footer)}</footer>
+      `;
 
-    <script>
-        // Email obfuscation to prevent scraping
-        function decodeEmail() {
-            const encoded = 'ZmthcnBAb2xkc2NvbGxlZ2UuY2E='; // Base64 encoded
-            return atob(encoded);
-        }
+      document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'PT' : 'EN';
+      document.documentElement.lang = currentLang === 'en' ? 'en' : 'pt-BR';
+      updateThemeButton();
+    }
 
-        function showEmail(elementId) {
-            const emailLink = document.getElementById(elementId);
-            if (emailLink && !emailLink.href.includes('mailto:')) {
-                const email = decodeEmail();
-                emailLink.href = 'mailto:' + email;
-                emailLink.textContent = email;
-            }
-        }
+    function togglePub(key) {
+      openPubs[key] = !openPubs[key];
+      render();
+    }
 
-        // Phone obfuscation (stored base64-encoded so the raw number never appears in page source)
-        function decodePhone() {
-            const encoded = 'KzEtNTE0LTQzNC00MTg5'; // Base64 encoded
-            return atob(encoded);
-        }
+    function toggleFunding() {
+      fundingOpen = !fundingOpen;
+      render();
+    }
 
-        function showPhone(elementId) {
-            const phoneLink = document.getElementById(elementId);
-            if (phoneLink && !phoneLink.href.includes('tel:')) {
-                const phone = decodePhone();
-                phoneLink.href = 'tel:' + phone.replace(/-/g, '');
-                phoneLink.textContent = phone;
-            }
-        }
+    function toggleAwards() {
+      awardsOpen = !awardsOpen;
+      render();
+    }
 
-        // Initialize on page load. NOTE: do NOT reveal email/phone here — they must
-        // stay hidden until the user clicks the reveal link (see showEmail/showPhone).
-        window.onload = function() {
-            initTheme();
-        };
+    function revealEmail() {
+      emailRevealed = true;
+      render();
+    }
 
-        let currentLang = 'en';
-        let qrGenerated = false;
+    function revealPhone() {
+      phoneRevealed = true;
+      render();
+    }
 
-        function switchLang(lang) {
-            currentLang = lang;
-            
-            // Update button states
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
-            
-            // Update content visibility
-            document.querySelectorAll('.lang-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            if (lang === 'en') {
-                document.getElementById('content-en').classList.add('active');
-                document.getElementById('contact-en').classList.add('active');
-                document.getElementById('footer-en').classList.add('active');
-            } else {
-                document.getElementById('content-pt').classList.add('active');
-                document.getElementById('contact-pt').classList.add('active');
-                document.getElementById('footer-pt').classList.add('active');
-            }
-        }
+    function switchLang() {
+      currentLang = currentLang === 'en' ? 'pt' : 'en';
+      localStorage.setItem('lang', currentLang);
+      render();
+    }
 
-        // ---- Theme (dark/light) toggle ----
-        function initTheme() {
-            const saved = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', saved);
-            updateThemeButton(saved);
-        }
+    function updateThemeButton() {
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const btn = document.getElementById('theme-btn');
+      if (btn) btn.textContent = theme === 'dark' ? '☀' : '●';
+    }
 
-        function toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme') || 'dark';
-            const next = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            updateThemeButton(next);
-        }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeButton();
+    }
 
-        function updateThemeButton(theme) {
-            const btn = document.getElementById('theme-toggle-btn');
-            if (btn) {
-                btn.textContent = theme === 'dark' ? '🌙' : '☀️';
-            }
-        }
-
-        function downloadVCard() {
-            const vcard = `BEGIN:VCARD
+    function downloadVCard() {
+      const c = t();
+      const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:Felippe Karp
-N:Karp;Felippe;;;
-TITLE:Instructor & Researcher
+N:Karp;Felippe;Hoffmann Silva;Dr.;
+TITLE:${c.title}
 ORG:Olds College of Agriculture & Technology
 TEL;TYPE=CELL:${decodePhone()}
 EMAIL:${decodeEmail()}
-URL:https://www.linkedin.com/in/felippe-karp/
-URL:https://scholar.google.com/citations?hl=en&user=RO-lEhwAAAAJ
-URL:https://orcid.org/0000-0001-6810-4656
-URL:https://www.oldscollege.ca/about-us/faculty/felippe-karp.html
+URL:${LINKS.linkedIn}
+URL:${LINKS.scholar}
+URL:${LINKS.orcid}
+URL:${LINKS.github}
+URL:${LINKS.faculty}
 ADR:;;Olds College;Olds;Alberta;;Canada
-NOTE:PhD in Bioresource Engineering (McGill 2025). Principal Investigator of HyperLayer Data Platform ($3.4M). National spokesperson for AI in Canadian agriculture. Research focus: Digital & Precision Agriculture\\, AI in Farming\\, Multi-Source Data Fusion.
+NOTE:PhD in Bioresource Engineering (McGill 2025). Principal Investigator, HyperLayer + Farm Credit Canada/AgExpert ($500k). National spokesperson for AI in Canadian agriculture. Research focus: Digital & Precision Agriculture\\, AI in Farming\\, Multi-Source Data Fusion.
 END:VCARD`;
 
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Felippe_Karp_Contact.vcf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        }
+      const blob = new Blob([vcard], { type: 'text/vcard' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Felippe_Karp_Contact.vcf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }
 
-        function generateQR() {
-            // Localize the modal text for the current language
-            const isEn = currentLang === 'en';
-            document.getElementById('qr-modal-title').textContent =
-                isEn ? 'Scan to Save Contact' : 'Escaneie para salvar o contato';
-            document.getElementById('qr-modal-hint').textContent =
-                isEn ? 'Point your phone camera at the code to save the contact.'
-                     : 'Aponte a câmera do celular para o código e salve o contato.';
+    function generateQR() {
+      const c = t();
+      document.getElementById('qr-modal-title').textContent = c.qrTitle;
+      document.getElementById('qr-modal-hint').textContent = c.qrHint;
 
-            if (!qrGenerated) {
-                const vCardData = `BEGIN:VCARD
+      if (!qrGenerated) {
+        const vCardData = `BEGIN:VCARD
 VERSION:3.0
 FN:Felippe Karp
 TEL;TYPE=CELL:${decodePhone()}
 EMAIL:${decodeEmail()}
-URL:https://www.linkedin.com/in/felippe-karp/
-URL:https://orcid.org/0000-0001-6810-4656
+URL:${LINKS.linkedIn}
+URL:${LINKS.orcid}
+URL:${LINKS.github}
 ORG:Olds College of Agriculture & Technology
 TITLE:Instructor & Researcher
 END:VCARD`;
 
-                new QRCode(document.getElementById('qrcode'), {
-                    text: vCardData,
-                    width: 256,
-                    height: 256,
-                    colorDark: "#0d1117",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-
-                qrGenerated = true;
-            }
-
-            document.getElementById('qr-modal').classList.add('active');
-        }
-
-        function closeQR(event) {
-            // When invoked from the backdrop, only close if the backdrop itself was clicked
-            if (event && event.type === 'click' && event.target !== event.currentTarget) return;
-            document.getElementById('qr-modal').classList.remove('active');
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeQR();
+        new QRCode(document.getElementById('qrcode'), {
+          text: vCardData,
+          width: 256,
+          height: 256,
+          colorDark: '#1f4f36',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H,
         });
-    </script>
+        qrGenerated = true;
+      }
+
+      document.getElementById('qr-modal').classList.add('active');
+    }
+
+    function closeQR(event) {
+      if (event && event.type === 'click' && event.target !== event.currentTarget) return;
+      document.getElementById('qr-modal').classList.remove('active');
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', switchLang);
+    document.getElementById('theme-btn').addEventListener('click', toggleTheme);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeQR();
+    });
+
+    render();
+  </script>
 </body>
 </html>
