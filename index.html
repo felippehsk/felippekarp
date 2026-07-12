@@ -12,12 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <script>
-    (function () {
-      var saved = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', saved);
-    })();
-  </script>
   <style>
     :root {
       --forest: #1f4f36;
@@ -42,24 +36,6 @@
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     }
 
-    html[data-theme="light"] {
-      --bg: #f3f6f4;
-      --bg-glow: #e4eee8;
-      --surface: #ffffff;
-      --surface-2: #eef3f0;
-      --border: #c9d6ce;
-      --text: #142018;
-      --muted: #5d7166;
-      --accent: var(--forest);
-      --stamp: #9a7a12;
-      --cta-bg: var(--forest);
-      --cta-text: #ffffff;
-      --chip-bg: #eef3f0;
-      --chip-border: #c9d6ce;
-      --chip-text: var(--forest);
-      --shadow: 0 16px 40px rgba(31, 79, 54, 0.12);
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
@@ -73,7 +49,6 @@
       background-attachment: fixed;
       min-height: 100vh;
       line-height: 1.55;
-      transition: background 0.35s ease, color 0.35s ease;
     }
 
     ::selection { background: color-mix(in srgb, var(--mint) 35%, transparent); }
@@ -124,6 +99,14 @@
       align-items: center;
       gap: 28px;
       animation: rise 0.7s ease both;
+      width: 100%;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
     }
 
     .brand-logo {
@@ -132,6 +115,7 @@
       border-radius: 28px;
       display: block;
       object-fit: cover;
+      flex-shrink: 0;
     }
 
     .identity {
@@ -190,7 +174,7 @@
       width: 100%;
       border-left: 2px solid var(--stamp);
       padding-left: 14px;
-      margin-top: 8px;
+      margin: 0;
       animation: rise 0.8s ease 0.08s both;
     }
 
@@ -386,6 +370,11 @@
       height: 22px;
       object-fit: contain;
       display: block;
+    }
+
+    .link-icon img.olds-mark {
+      width: 18px;
+      height: 22px;
     }
 
     .timeline {
@@ -654,6 +643,85 @@
       .profile { width: 84px; height: 84px; }
     }
 
+    @media (min-width: 900px) {
+      .page {
+        max-width: 1040px;
+        padding: 88px 48px 100px;
+        gap: 44px;
+      }
+
+      .hero {
+        flex-direction: row;
+        align-items: center;
+        gap: 48px;
+        padding: 36px 40px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+
+      .brand-logo {
+        width: 168px;
+        height: 168px;
+        border-radius: 36px;
+      }
+
+      .hero-copy {
+        flex: 1;
+        gap: 22px;
+        min-width: 0;
+      }
+
+      .identity {
+        gap: 20px;
+      }
+
+      .profile {
+        width: 112px;
+        height: 112px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        max-width: 36em;
+      }
+
+      .cta-row {
+        max-width: 420px;
+      }
+
+      .btn {
+        flex: 1 1 auto;
+      }
+
+      .desk-split {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 36px;
+        align-items: start;
+      }
+
+      .project-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 28px;
+      }
+
+      .project-item {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .media-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 28px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation: none !important;
@@ -665,7 +733,6 @@
 <body>
   <div class="top-controls">
     <button class="control-btn" id="lang-btn" type="button" aria-label="Switch language">PT</button>
-    <button class="control-btn" id="theme-btn" type="button" aria-label="Toggle theme">☀</button>
   </div>
 
   <main class="page" id="app">
@@ -727,7 +794,7 @@
       ],
       focus: [
         'Digital & Precision Agriculture',
-        'Artificial Intelligence in Farming',
+        'Artificial Intelligence in Agriculture',
         'Multi-Source Data Fusion',
         'Proximal & Remote Sensing',
         'Agricultural Machinery & Technology',
@@ -988,46 +1055,48 @@
       document.getElementById('app').innerHTML = `
         <header class="hero">
           <img class="brand-logo" src="assets/images/fk-logo.png" alt="FK — Felippe Karp" width="120" height="120">
-          <div class="identity">
-            <img class="profile" src="assets/images/profile.jpg" alt="Dr. Felippe Karp" width="96" height="96">
-            <div class="identity-text">
-              <h1>${esc(c.name)}</h1>
-              <div class="role-label">${esc(c.roleLabel)}</div>
-              <div class="title-line">${esc(c.institution)}</div>
+          <div class="hero-copy">
+            <div class="identity">
+              <img class="profile" src="assets/images/profile.jpg" alt="Dr. Felippe Karp" width="96" height="96">
+              <div class="identity-text">
+                <h1>${esc(c.name)}</h1>
+                <div class="role-label">${esc(c.roleLabel)}</div>
+                <div class="title-line">${esc(c.institution)}</div>
+              </div>
+            </div>
+            <p class="tagline">${esc(c.tagline)}</p>
+            <div class="cta-row">
+              <button class="btn btn-primary" type="button" onclick="downloadVCard()">${iconDownload()} ${esc(c.saveContact)}</button>
+              <button class="btn btn-secondary" type="button" onclick="generateQR()">${iconQr()} ${esc(c.showQr)}</button>
             </div>
           </div>
         </header>
 
-        <p class="tagline">${esc(c.tagline)}</p>
+        <div class="desk-split">
+          <section class="panel" aria-label="${esc(c.focusLabel)}">
+            <div class="section-label">${esc(c.focusLabel)}</div>
+            <div class="chips">${chips}</div>
+          </section>
 
-        <div class="cta-row">
-          <button class="btn btn-primary" type="button" onclick="downloadVCard()">${iconDownload()} ${esc(c.saveContact)}</button>
-          <button class="btn btn-secondary" type="button" onclick="generateQR()">${iconQr()} ${esc(c.showQr)}</button>
-        </div>
-
-        <section class="panel" aria-label="${esc(c.focusLabel)}">
-          <div class="section-label">${esc(c.focusLabel)}</div>
-          <div class="chips">${chips}</div>
-        </section>
-
-        <section class="section" aria-label="Contact">
-          <div class="contact-list">
-            ${emailRevealed
-              ? `<a class="reveal-btn revealed" href="mailto:${esc(decodeEmail())}">${iconMail()} <span>${esc(decodeEmail())}</span></a>`
-              : `<button class="reveal-btn" id="email-btn" type="button" onclick="revealEmail()">${iconMail()} <span id="email-text">${esc(emailText)}</span></button>`}
-            ${phoneRevealed
-              ? `<a class="reveal-btn revealed" href="tel:${esc(decodePhone().replace(/-/g, ''))}">${iconPhone()} <span>${esc(decodePhone())}</span></a>`
-              : `<button class="reveal-btn" id="phone-btn" type="button" onclick="revealPhone()">${iconPhone()} <span id="phone-text">${esc(phoneText)}</span></button>`}
-            <a class="contact-loc" href="${MAPS_URL}" target="_blank" rel="noopener">${iconPin()} ${esc(c.location)}</a>
-            <div class="links-row">
-              <a class="link-icon" href="${LINKS.linkedIn}" target="_blank" rel="noopener" title="${esc(c.linkedIn)}" aria-label="${esc(c.linkedIn)}">${iconLinkedIn()}</a>
-              <a class="link-icon" href="${LINKS.scholar}" target="_blank" rel="noopener" title="${esc(c.scholar)}" aria-label="${esc(c.scholar)}">${iconScholar()}</a>
-              <a class="link-icon" href="${LINKS.orcid}" target="_blank" rel="noopener" title="${esc(c.orcid)}" aria-label="${esc(c.orcid)}">${iconOrcid()}</a>
-              <a class="link-icon" href="${LINKS.github}" target="_blank" rel="noopener" title="${esc(c.github)}" aria-label="${esc(c.github)}">${iconGitHub()}</a>
-              <a class="link-icon" href="${LINKS.faculty}" target="_blank" rel="noopener" title="${esc(c.faculty)}" aria-label="${esc(c.faculty)}"><img src="assets/images/olds-college-logo.png" alt=""></a>
+          <section class="section" aria-label="Contact">
+            <div class="contact-list">
+              ${emailRevealed
+                ? `<a class="reveal-btn revealed" href="mailto:${esc(decodeEmail())}">${iconMail()} <span>${esc(decodeEmail())}</span></a>`
+                : `<button class="reveal-btn" id="email-btn" type="button" onclick="revealEmail()">${iconMail()} <span id="email-text">${esc(emailText)}</span></button>`}
+              ${phoneRevealed
+                ? `<a class="reveal-btn revealed" href="tel:${esc(decodePhone().replace(/-/g, ''))}">${iconPhone()} <span>${esc(decodePhone())}</span></a>`
+                : `<button class="reveal-btn" id="phone-btn" type="button" onclick="revealPhone()">${iconPhone()} <span id="phone-text">${esc(phoneText)}</span></button>`}
+              <a class="contact-loc" href="${MAPS_URL}" target="_blank" rel="noopener">${iconPin()} ${esc(c.location)}</a>
+              <div class="links-row">
+                <a class="link-icon" href="${LINKS.linkedIn}" target="_blank" rel="noopener" title="${esc(c.linkedIn)}" aria-label="${esc(c.linkedIn)}">${iconLinkedIn()}</a>
+                <a class="link-icon" href="${LINKS.scholar}" target="_blank" rel="noopener" title="${esc(c.scholar)}" aria-label="${esc(c.scholar)}">${iconScholar()}</a>
+                <a class="link-icon" href="${LINKS.orcid}" target="_blank" rel="noopener" title="${esc(c.orcid)}" aria-label="${esc(c.orcid)}">${iconOrcid()}</a>
+                <a class="link-icon" href="${LINKS.github}" target="_blank" rel="noopener" title="${esc(c.github)}" aria-label="${esc(c.github)}">${iconGitHub()}</a>
+                <a class="link-icon" href="${LINKS.faculty}" target="_blank" rel="noopener" title="${esc(c.faculty)}" aria-label="${esc(c.faculty)}"><img class="olds-mark" src="assets/images/olds-college-logo-white.png" alt=""></a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         <section class="section">
           <div class="section-label">${esc(c.academicLabel)}</div>
@@ -1046,7 +1115,7 @@
         </section>
 
         <section class="section">
-          <div class="acc-item${fundingOpen ? ' open' : ''}">
+          <div class="acc-item${fundingOpen ? ' open' : ''}" id="funding-acc">
             <button class="acc-trigger" type="button" onclick="toggleFunding()" aria-expanded="${fundingOpen}">
               <span>${esc(c.fundingLabel)}</span>
               <span class="acc-meta">
@@ -1059,7 +1128,7 @@
         </section>
 
         <section class="section">
-          <div class="acc-item${awardsOpen ? ' open' : ''}">
+          <div class="acc-item${awardsOpen ? ' open' : ''}" id="awards-acc">
             <button class="acc-trigger" type="button" onclick="toggleAwards()" aria-expanded="${awardsOpen}">
               <span>${esc(c.awardsLabel)}</span>
               <span class="acc-meta">
@@ -1089,32 +1158,67 @@
 
       document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'PT' : 'EN';
       document.documentElement.lang = currentLang === 'en' ? 'en' : 'pt-BR';
-      updateThemeButton();
     }
 
     function togglePub(key) {
       openPubs[key] = !openPubs[key];
-      render();
+      const item = document.querySelector('[data-pub="' + key + '"]');
+      if (!item) {
+        render();
+        return;
+      }
+      const open = !!openPubs[key];
+      item.classList.toggle('open', open);
+      const btn = item.querySelector('.acc-trigger');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
     function toggleFunding() {
       fundingOpen = !fundingOpen;
-      render();
+      const item = document.getElementById('funding-acc');
+      if (!item) {
+        render();
+        return;
+      }
+      item.classList.toggle('open', fundingOpen);
+      const btn = item.querySelector('.acc-trigger');
+      if (btn) btn.setAttribute('aria-expanded', fundingOpen ? 'true' : 'false');
     }
 
     function toggleAwards() {
       awardsOpen = !awardsOpen;
-      render();
+      const item = document.getElementById('awards-acc');
+      if (!item) {
+        render();
+        return;
+      }
+      item.classList.toggle('open', awardsOpen);
+      const btn = item.querySelector('.acc-trigger');
+      if (btn) btn.setAttribute('aria-expanded', awardsOpen ? 'true' : 'false');
     }
 
     function revealEmail() {
       emailRevealed = true;
-      render();
+      const email = decodeEmail();
+      const btn = document.getElementById('email-btn');
+      if (!btn) return;
+      const a = document.createElement('a');
+      a.className = 'reveal-btn revealed';
+      a.href = 'mailto:' + email;
+      a.innerHTML = iconMail() + ' <span>' + esc(email) + '</span>';
+      btn.replaceWith(a);
     }
 
     function revealPhone() {
       phoneRevealed = true;
-      render();
+      const phone = decodePhone();
+      const btn = document.getElementById('phone-btn');
+      if (!btn) return;
+      const a = document.createElement('a');
+      a.className = 'reveal-btn revealed';
+      a.href = 'tel:' + phone.replace(/-/g, '');
+      a.innerHTML = iconPhone() + ' <span>' + esc(phone) + '</span>';
+      btn.replaceWith(a);
     }
 
     function switchLang() {
@@ -1123,39 +1227,28 @@
       render();
     }
 
-    function updateThemeButton() {
-      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const btn = document.getElementById('theme-btn');
-      if (btn) btn.textContent = theme === 'dark' ? '☀' : '●';
-    }
+    const SITE_URL = 'https://felippehsk.github.io/felippekarp/';
 
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeButton();
+    function buildVCard() {
+      const c = t();
+      return [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Felippe Karp',
+        'N:Karp;Felippe;Hoffmann Silva;Dr.;',
+        'TITLE:' + c.title,
+        'ORG:Olds College of Agriculture & Technology',
+        'TEL;TYPE=CELL:' + decodePhone(),
+        'EMAIL:' + decodeEmail(),
+        'URL:' + LINKS.linkedIn,
+        'URL:' + SITE_URL,
+        'ADR:;;Olds College;Olds;Alberta;;Canada',
+        'END:VCARD',
+      ].join('\n');
     }
 
     function downloadVCard() {
-      const c = t();
-      const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:Felippe Karp
-N:Karp;Felippe;Hoffmann Silva;Dr.;
-TITLE:${c.title}
-ORG:Olds College of Agriculture & Technology
-TEL;TYPE=CELL:${decodePhone()}
-EMAIL:${decodeEmail()}
-URL:${LINKS.linkedIn}
-URL:${LINKS.scholar}
-URL:${LINKS.orcid}
-URL:${LINKS.github}
-URL:${LINKS.faculty}
-ADR:;;Olds College;Olds;Alberta;;Canada
-NOTE:PhD in Bioresource Engineering (McGill 2025). Principal Investigator, HyperLayer + Farm Credit Canada/AgExpert ($500k). National spokesperson for AI in Canadian agriculture. Research focus: Digital & Precision Agriculture\\, AI in Farming\\, Multi-Source Data Fusion.
-END:VCARD`;
-
+      const vcard = buildVCard();
       const blob = new Blob([vcard], { type: 'text/vcard' });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -1172,29 +1265,17 @@ END:VCARD`;
       document.getElementById('qr-modal-title').textContent = c.qrTitle;
       document.getElementById('qr-modal-hint').textContent = c.qrHint;
 
-      if (!qrGenerated) {
-        const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:Felippe Karp
-TEL;TYPE=CELL:${decodePhone()}
-EMAIL:${decodeEmail()}
-URL:${LINKS.linkedIn}
-URL:${LINKS.orcid}
-URL:${LINKS.github}
-ORG:Olds College of Agriculture & Technology
-TITLE:Instructor & Researcher
-END:VCARD`;
-
-        new QRCode(document.getElementById('qrcode'), {
-          text: vCardData,
-          width: 256,
-          height: 256,
-          colorDark: '#1f4f36',
-          colorLight: '#ffffff',
-          correctLevel: QRCode.CorrectLevel.H,
-        });
-        qrGenerated = true;
-      }
+      const qrHost = document.getElementById('qrcode');
+      qrHost.innerHTML = '';
+      new QRCode(qrHost, {
+        text: buildVCard(),
+        width: 256,
+        height: 256,
+        colorDark: '#1f4f36',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+      qrGenerated = true;
 
       document.getElementById('qr-modal').classList.add('active');
     }
@@ -1205,7 +1286,6 @@ END:VCARD`;
     }
 
     document.getElementById('lang-btn').addEventListener('click', switchLang);
-    document.getElementById('theme-btn').addEventListener('click', toggleTheme);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeQR();
     });
