@@ -303,6 +303,13 @@
       font-size: 14px;
     }
 
+    .desk-split {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      width: 100%;
+    }
+
     .reveal-btn {
       background: none;
       border: none;
@@ -478,10 +485,10 @@
       cursor: pointer;
       text-align: left;
       color: var(--text);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
@@ -782,12 +789,8 @@
       academicLabel: 'ACADEMIC BACKGROUND',
       projectsLabel: 'KEY PROJECTS & ACHIEVEMENTS',
       pubSectionLabel: 'PUBLICATIONS',
-      pubHint: 'Selected peer-reviewed journal articles',
+      pubHint: 'Journal articles, book chapters, conference proceedings, theses & talks',
       fundingLabel: 'RESEARCH FUNDING',
-      awardsLabel: 'HONORS & AWARDS',
-      awardsHint: 'Graduation awards, ESALQ/USP Class of 2018 (ceremony January 2019). Official names and criteria:',
-      awardsLinkLabel: 'ESALQ Awards',
-      ceremonyLabel: 'Degree ceremony bulletin',
       mediaLabel: 'MEDIA FEATURES',
       footer: '© 2026 Dr. Felippe Karp. Transforming agriculture through technology and innovation.',
       qrTitle: 'Scan to Save Contact',
@@ -827,19 +830,6 @@
         { title: 'Agricultural Multi-Layer Data Fusion for Cloud-Based Advisory Services', meta: 'Mitacs Accelerate, with TELUS & Olds College — $120,000, 2021–2023' },
         { title: 'Measurement Capacity of Geometry Parameters in Coffee Fields by LiDAR Sensor', meta: 'São Paulo Research Foundation (FAPESP) — $1,800, 2016–2017' },
       ],
-      awards: [
-        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — highest final GPA in Agronomic Engineering, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — highest GPA in the phytopathology / microbiology course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — sustainable agriculture course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — statewide recognition of top technology graduates, Class of 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
-        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — $25,000, 2021' },
-        { title: '2nd Place, Student Presentation', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
-        { title: '2nd Place, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
-        { title: 'George H. Cook Scholar — Honors Thesis Presentation', meta: 'USP–Rutgers partnership / SIICUSP, 2016' },
-      ],
     };
 
     const PT = {
@@ -862,12 +852,8 @@
       academicLabel: 'FORMAÇÃO ACADÊMICA',
       projectsLabel: 'PRINCIPAIS PROJETOS E REALIZAÇÕES',
       pubSectionLabel: 'PRODUÇÃO CIENTÍFICA',
-      pubHint: 'Artigos selecionados em periódicos com revisão por pares',
+      pubHint: 'Artigos, capítulos, anais, teses e palestras',
       fundingLabel: 'FINANCIAMENTO DE PESQUISA',
-      awardsLabel: 'PRÊMIOS E HONRARIAS',
-      awardsHint: 'Prêmios de formatura, ESALQ/USP Classe 2018 (cerimônia em janeiro de 2019). Nomes oficiais e critérios:',
-      awardsLinkLabel: 'Prêmios da ESALQ',
-      ceremonyLabel: 'Boletim da colação de grau',
       mediaLabel: 'REPERCUSSÃO NA MÍDIA',
       footer: '© 2026 Dr. Felippe Karp. Transformando a agricultura por meio de tecnologia e inovação.',
       qrTitle: 'Escaneie para salvar o contato',
@@ -907,19 +893,6 @@
         { title: 'Fusão de Dados Agrícolas Multicamadas para Serviços de Consultoria em Nuvem', meta: 'Mitacs Accelerate, com TELUS e Olds College — US$ 120.000, 2021–2023' },
         { title: 'Capacidade de Medição de Parâmetros Geométricos em Cafezais por Sensor LiDAR', meta: 'FAPESP — US$ 1.800, 2016–2017' },
       ],
-      awards: [
-        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — maior média na classificação final do curso de Engenharia Agronômica, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — maior média no conjunto de disciplinas de fitopatologia / microbiologia (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — conjunto de disciplinas de agricultura sustentável (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — reconhecimento estadual aos formandos da área tecnológica, Classe 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
-        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — US$ 25.000, 2021' },
-        { title: '2º lugar, Apresentação Estudantil', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
-        { title: '2º lugar, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
-        { title: 'George H. Cook Scholar — Apresentação de monografia de honra', meta: 'Parceria USP–Rutgers / SIICUSP, 2016' },
-      ],
     };
 
     const PUBLICATIONS = [
@@ -934,6 +907,86 @@
           { title: 'Ammonia volatilization losses from urea coated with copper, boron, and selenium', meta: 'Faria, Karp, Machado, Abdalla — Semina: Ciências Agrárias, 41(4), 2020', url: 'https://doi.org/10.5433/1679-0359.2020v41n4p1415' },
           { title: 'Nutritional quality and organic matter degradability of Brachiaria spp. agronomically biofortified with selenium', meta: 'Faria, Karp, et al. — J. of Animal Physiology and Animal Nutrition, 102(6), 2018', url: 'https://doi.org/10.1111/jpn.12971' },
           { title: 'Brachiaria enrichment with selenium-coated urea', meta: 'Faria, Machado, Karp, et al. — Ciência Rural, 48(6), 2018', url: 'https://doi.org/10.1590/0103-8478cr20170630' },
+        ],
+      },
+      {
+        key: 'chapters',
+        labelEN: 'Book Chapter',
+        labelPT: 'Capítulo de Livro',
+        items: [
+          { title: 'Developments in proximal soil sensing for precision agriculture', meta: 'Adamchuk, Karp, Biswas — Precision Agriculture for Sustainability (2nd Ed.), Burleigh Dodds, 2025' },
+        ],
+      },
+      {
+        key: 'refereedConf',
+        labelEN: 'Refereed Conference Proceedings',
+        labelPT: 'Trabalhos Completos em Anais (com Revisão)',
+        items: [
+          { title: 'Comparative study of interpolation methods for low-density sampling', meta: "Precision Agriculture '23 — 14th ECPA, Bologna, 2023", url: 'https://doi.org/10.3920/978-90-8686-947-3_71' },
+          { title: 'Accuracy assessment of a mobile terrestrial laser scanner for tree crops', meta: 'Advances in Animal Biosciences, 8(2) — ECPA 2017', url: 'https://doi.org/10.1017/S2040470017000073' },
+          { title: 'Yield mapping methods for manually harvested crops', meta: "Precision Agriculture '15 — 10th ECPA, Tel Aviv, 2015", url: 'https://doi.org/10.3920/978-90-8686-814-8_27' },
+        ],
+      },
+      {
+        key: 'nonRefereedConf',
+        labelEN: 'Non-Refereed Conference Proceedings',
+        labelPT: 'Trabalhos em Anais (sem Revisão)',
+        items: [
+          { title: 'Development of an automated system for in situ measurements of soil health indicators', meta: 'Lan, Adamchuk, Geddes, Kvezereli, Karp, McGuire — 2024 ASABE Annual International Meeting, Anaheim', url: 'https://doi.org/10.13031/aim.202401135' },
+          { title: 'Predicting soil chemical properties using proximal soil sensing technologies and topography data: A case study', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck, Biswas — 16th ICPA, Manhattan, KS, 2024' },
+          { title: 'Optimization of batch processing of high-density anisotropic distributed proximal soil sensing data for precision agriculture purposes', meta: 'Karp, Adamchuk, Melnitchouck, Dutilleul — 15th ICPA, Minneapolis, 2022' },
+          { title: 'Canopy parameters in coffee orchards obtained by a mobile terrestrial laser scanner', meta: 'Karp, Colaço, Trevisan, Molin — 14th ICPA, Montreal, 2018' },
+          { title: 'Soybean plant phenotyping using low-cost sensors', meta: 'Ferraz, Karp, Trevisan, Eitelwein, Molin — 14th ICPA, Montreal, 2018' },
+          { title: 'Comparação entre sensores de condutividade e resistividade elétrica do solo', meta: 'Karp, Colaço, Trevisan, Molin — X Congresso Brasileiro de Agroinformática, 2015' },
+        ],
+      },
+      {
+        key: 'theses',
+        labelEN: 'Theses & Dissertations',
+        labelPT: 'Teses e Dissertações',
+        items: [
+          { title: 'Analysis of Multi-Layer Spatial Data to Increase the Accuracy of Thematic Soil Maps for Agriculture', meta: 'PhD, Bioresource Engineering — McGill University, 2025', url: 'https://escholarship.mcgill.ca/concern/theses/gq67jx84w' },
+          { title: 'Within-Field Yield Prediction for Sugarcane and Rice Focused on Precision Agriculture Applications', meta: 'MS, Precision Agriculture — Louisiana State University, 2020', url: 'https://doi.org/10.31390/gradschool_theses.5228' },
+          { title: 'Use of LiDAR Sensor in Coffee: Evaluation of Canopy Parameters Spatial Variability', meta: 'BSc Monograph — ESALQ, University of São Paulo, 2018' },
+        ],
+      },
+      {
+        key: 'abstracts',
+        labelEN: 'Conference Abstracts & Presentations',
+        labelPT: 'Resumos e Apresentações em Congressos',
+        items: [
+          { title: 'Olds College Bridging Research to On-Farm Implementation for Sustainable Soil Practices: Study Cases', meta: 'Canadian Soil Science Society Annual Meeting, Vancouver, 2024' },
+          { title: 'Towards Digital Soil Characterization Using Proximal Soil Sensor Data Fusion: A Case Study', meta: 'CSBE Annual Meeting, Charlottetown, 2022' },
+          { title: 'Validation of Soil Survey Maps using Different Proximal Soil Sensing Methods', meta: 'EEGS-WG-PSS-SEG Symposium (online), 2021' },
+          { title: 'Automated Spatial Yield Prediction Framework for Corn in Louisiana', meta: 'ASA, CSSA, SSSA Annual Meeting, 2021', url: 'https://scisoc.confex.com/scisoc/2021am/meetingapp.cgi/Paper/134689' },
+          { title: 'A Practical Variable Rate Nitrogen Fertilization Recommendation Generated from Active Crop Canopy Sensors and UAV Passive Sensor', meta: 'ASA, CSSA, SSSA Annual Meeting, 2021', url: 'https://scisoc.confex.com/scisoc/2021am/meetingapp.cgi/Paper/135502' },
+          { title: 'Accuracy Assessment of a Machine Learning Sugarcane Yield Map Prediction System', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126109' },
+          { title: 'Yield Map Prediction for Rice in Louisiana Using Machine Learning', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126087' },
+          { title: 'A Programmatic Framework to Evaluate Crop Yield Response by Soil Characteristics in On-Farm Precision Experiments', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/125315' },
+          { title: 'Drone-Based Vegetation Indices Evaluation for Variety Differentiation', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126988' },
+          { title: 'Sugarcane Yield Map Prediction: A Preliminary Study', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019', url: 'https://scisoc.confex.com/scisoc/2019am/meetingapp.cgi/Paper/120075' },
+          { title: 'Spatial Nitrogen (N) Rich Strip Approach to Evaluate the N Demand for Cotton Based on Satellite Remote Sensing', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019' },
+          { title: 'Studying the Relationship of Nitrogen Fertilizer Rates and Corn Plant Population Using Sensor Fusion', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019' },
+          { title: 'Degradabilidade e produção de gases in vitro de Brachiaria brizantha biofortificada agronomicamente com selênio', meta: 'SIICUSP Undergraduate Symposium, USP, 2015' },
+          { title: 'Análise de gossipol livre em coprodutos da indústria algodoeira, utilizando HPLC', meta: 'SIICUSP Undergraduate Symposium, USP, 2015' },
+        ],
+      },
+      {
+        key: 'talks',
+        labelEN: 'Invited & Keynote Presentations',
+        labelPT: 'Palestras e Apresentações Convidadas',
+        items: [
+          { title: 'Artificial Intelligence: Practical Applications and Future Potential in Agriculture', meta: 'Top Crop Summit, Saskatoon, SK — Feb 2025' },
+          { title: 'Advancing Productivity on Canadian Smart Farms', meta: 'Winnipeg, MB — Sep 2024' },
+          { title: 'Pros and Cons of Conducting On-Farm Research', meta: 'AgSmart 2024, Olds, AB — Jul 2024' },
+          { title: 'Can Soil Fertility Mapping Affect Management Decisions?', meta: 'AgSmart 2024, Olds, AB — Jul 2024' },
+          { title: 'Artificial Intelligence: Current and Future Use in Agriculture', meta: 'TELUS Agriculture Client Meeting, Okotoks, AB — Jul 2024' },
+          { title: 'Assessing Lodging with Drones and Computer Learning', meta: 'Alberta Agronomy Update (online) — Jan 2024' },
+          { title: 'Soil Mapping for Precision Agriculture', meta: 'AgSmart 2023, Olds, AB — Aug 2023' },
+          { title: 'Virtual Soil Survey from Sensors & Machine Learning', meta: 'AgSmart 2022, Olds, AB — Aug 2022' },
+          { title: 'Validation of Soil Survey Maps using Different Proximal Soil Sensing Methods', meta: 'Talk About Geophysics Symposium (online) — Dec 2021' },
+          { title: 'Sugarcane Yield Map Prediction Based on Satellite Imagery', meta: 'LA Div. American Society of Sugar Cane Technologists (online) — Jan 2021' },
+          { title: 'Yield Filtering Using YieldEditor 2.0', meta: 'Digital Agriculture Conference, Alexandria, LA — Jan 2020' },
         ],
       },
     ];
@@ -967,12 +1020,9 @@
     let emailRevealed = false;
     let phoneRevealed = false;
     let qrGenerated = false;
-    const AWARDS_PAGE = 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq';
-    const CEREMONY_PAGE = 'https://www.esalq.usp.br/boletim/esalq-realiza-sess%C3%A3o-solene-de-cola%C3%A7%C3%A3o-de-grau-da-classe-de-2018';
 
     const openPubs = {};
     let fundingOpen = false;
-    let awardsOpen = false;
 
     function decodeEmail() {
       return atob('ZmthcnBAb2xkc2NvbGxlZ2UuY2E=');
@@ -1058,8 +1108,6 @@
         `<div class="pub-item"><span class="pub-title">${esc(f.title)}</span><div class="pub-meta">${esc(f.meta)}</div></div>`
       ).join('');
 
-      const awards = c.awards.map(renderPubItem).join('');
-
       const media = c.media.map((m) =>
         `<a href="${esc(m.url)}" target="_blank" rel="noopener"><b>${esc(m.source)}</b> — ${esc(m.desc)}</a>`
       ).join('');
@@ -1142,27 +1190,6 @@
         </section>
 
         <section class="section">
-          <div class="acc-item${awardsOpen ? ' open' : ''}" id="awards-acc">
-            <button class="acc-trigger" type="button" onclick="toggleAwards()" aria-expanded="${awardsOpen}">
-              <span>${esc(c.awardsLabel)}</span>
-              <span class="acc-meta">
-                <span class="acc-count">${c.awards.length}</span>
-                <span class="acc-chevron" aria-hidden="true">▸</span>
-              </span>
-            </button>
-            <div class="acc-body">
-              <p class="section-hint" style="margin:0 0 4px; padding-top:2px;">
-                ${esc(c.awardsHint)}
-                <a href="${AWARDS_PAGE}" target="_blank" rel="noopener">${esc(c.awardsLinkLabel)}</a>
-                ·
-                <a href="${CEREMONY_PAGE}" target="_blank" rel="noopener">${esc(c.ceremonyLabel)}</a>
-              </p>
-              ${awards}
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
           <div class="section-label">${esc(c.mediaLabel)}</div>
           <div class="media-list">${media}</div>
         </section>
@@ -1197,18 +1224,6 @@
       item.classList.toggle('open', fundingOpen);
       const btn = item.querySelector('.acc-trigger');
       if (btn) btn.setAttribute('aria-expanded', fundingOpen ? 'true' : 'false');
-    }
-
-    function toggleAwards() {
-      awardsOpen = !awardsOpen;
-      const item = document.getElementById('awards-acc');
-      if (!item) {
-        render();
-        return;
-      }
-      item.classList.toggle('open', awardsOpen);
-      const btn = item.querySelector('.acc-trigger');
-      if (btn) btn.setAttribute('aria-expanded', awardsOpen ? 'true' : 'false');
     }
 
     function revealEmail() {
