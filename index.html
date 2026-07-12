@@ -126,13 +126,23 @@
       text-align: left;
     }
 
-    .profile {
+    .profile-wrap {
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      object-fit: cover;
+      overflow: hidden;
       flex-shrink: 0;
       border: 2px solid color-mix(in srgb, var(--mint) 55%, var(--border));
+    }
+
+    .profile {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 14%;
+      transform: scale(1.55);
+      transform-origin: 50% 18%;
+      display: block;
     }
 
     .identity-text {
@@ -640,7 +650,7 @@
       .top-controls { top: 12px; right: 12px; }
       .brand-logo { width: 100px; height: 100px; border-radius: 24px; }
       .identity { gap: 12px; }
-      .profile { width: 84px; height: 84px; }
+      .profile-wrap { width: 84px; height: 84px; }
     }
 
     @media (min-width: 900px) {
@@ -676,7 +686,7 @@
         gap: 20px;
       }
 
-      .profile {
+      .profile-wrap {
         width: 112px;
         height: 112px;
       }
@@ -787,7 +797,7 @@
       ],
       projects: [
         { title: 'HyperLayer Data Platform', desc: 'Continuing to support the integration of multi-layer farm data with AI predictions for precision agriculture.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
-        { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the scientific analysis for a multi-year on-farm experimentation program across Alberta and Saskatchewan.', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the application, scientific process, and analysis of a multi-year on-farm experimentation program across Alberta and Saskatchewan (2024–2026).', url: 'https://ofpeprairiesca.github.io/' },
         { title: 'Olds College Smart Farm Research', desc: 'Supporting research with >4 terabytes of agricultural data from a 2,800-acre real-world farming operation.', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'McGill-TELUS-Olds College Partnership', desc: 'Joint research collaboration on agricultural data integration.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Data Standards Development', desc: 'Developing standards for agricultural data collection and processing for AI model training.' },
@@ -867,7 +877,7 @@
       ],
       projects: [
         { title: 'Plataforma HyperLayer', desc: 'Integração de múltiplas camadas de dados agrícolas com predições de IA para a agricultura de precisão.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
-        { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Coordenação da análise científica de um programa multianual de ensaios a campo em Alberta e Saskatchewan.', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Liderou a aplicação, o processo científico e a análise de um programa multianual de ensaios a campo em Alberta e Saskatchewan (2024–2026).', url: 'https://ofpeprairiesca.github.io/' },
         { title: 'Pesquisa Smart Farm — Olds College', desc: 'Pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'Parceria McGill-TELUS-Olds College', desc: 'Pesquisa conjunta entre McGill, TELUS e Olds College na integração de dados agrícolas.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Desenvolvimento de Padrões de Dados', desc: 'Criação de padrões para coleta e processamento de dados agrícolas no treinamento de modelos de IA.' },
@@ -1057,7 +1067,9 @@
           <img class="brand-logo" src="assets/images/fk-logo.png" alt="FK — Felippe Karp" width="120" height="120">
           <div class="hero-copy">
             <div class="identity">
-              <img class="profile" src="assets/images/profile.jpg" alt="Dr. Felippe Karp" width="96" height="96">
+              <div class="profile-wrap">
+                <img class="profile" src="assets/images/profile.jpg" alt="Dr. Felippe Karp" width="96" height="96">
+              </div>
               <div class="identity-text">
                 <h1>${esc(c.name)}</h1>
                 <div class="role-label">${esc(c.roleLabel)}</div>
