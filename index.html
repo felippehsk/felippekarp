@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Felippe Karp — Digital Agriculture Leader</title>
+  <title>Dr. Felippe Karp - Digital Agriculture Leader</title>
   <meta name="description" content="Instructor & Researcher at Olds College of Agriculture & Technology. Leading Canada's digital agriculture revolution.">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
@@ -173,6 +173,31 @@
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.4;
+    }
+
+    .finalist-badge {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid color-mix(in srgb, var(--stamp) 50%, var(--border));
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .finalist-badge strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--stamp);
+    }
+
+    .finalist-badge span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-top: 4px;
     }
 
     .tagline {
@@ -660,6 +685,8 @@
       .brand-logo { width: 100px; height: 100px; border-radius: 24px; }
       .identity { gap: 12px; }
       .profile-wrap { width: 84px; height: 84px; }
+      .finalist-badge { padding: 10px 12px; }
+      .finalist-badge strong { font-size: 0.85rem; }
     }
 
     @media (min-width: 900px) {
@@ -775,6 +802,8 @@
       title: 'Instructor & Researcher',
       institution: 'Olds College of Agriculture & Technology',
       tagline: "Leading Canada's Digital Agriculture Revolution",
+      finalistTitle: '🏆 2026 ASTech Awards Finalist - HyperLayer Data Platform',
+      finalistMeta: 'Agriculture and Agrifood & Regional Innovation categories',
       saveContact: 'Save Contact',
       showQr: 'Show QR Code',
       focusLabel: 'R&D FOCUS',
@@ -805,8 +834,8 @@
         'BSc in Agronomic Engineering, School of Agriculture "Luiz de Queiroz", University of São Paulo, Brazil',
       ],
       projects: [
-        { title: 'HyperLayer Data Platform', desc: 'Continuing to support the integration of multi-layer farm data with AI predictions for precision agriculture.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
-        { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the application, scientific process, and analysis of a multi-year on-farm experimentation program across Alberta and Saskatchewan (2024–2026).', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'HyperLayer Data Platform - 2026 ASTech Awards Finalist', desc: 'A standardized, georeferenced data platform that unifies fragmented farm data - soil, imagery, yield, weather - into one system: essentially a digital twin of the field. Built at Olds College\'s Smart Farm as the foundation for next-generation AI-powered farm tools. Co-built with Alex Melnitchouck.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the application, scientific process, and analysis of a multi-year on-farm experimentation program across Alberta and Saskatchewan (2024-2026).', url: 'https://ofpeprairiesca.github.io/' },
         { title: 'Olds College Smart Farm Research', desc: 'Supporting research with >4 terabytes of agricultural data from a 2,800-acre real-world farming operation.', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'McGill-TELUS-Olds College Partnership', desc: 'Joint research collaboration on agricultural data integration.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Development of Frameworks for Data Collection and Processing', desc: 'Developing frameworks for agricultural data collection and processing for AI model training.' },
@@ -829,23 +858,23 @@
         { source: 'TELUS Blog', desc: 'Investing in Agtech Innovation with Olds College Smart Farm', url: 'https://www.telus.com/agcg/en/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
       ],
       funding: [
-        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Principal Investigator — $500,000. Further development of tools for the HyperLayer and AgExpert platforms to support farmers and agronomists with automated data processing frameworks.' },
-        { title: 'Introduction of On-Farm Precision Experimentation (OFPE) to Alberta Farms', meta: 'Results Driven Agriculture Research (RDAR) — $225,000, 2 years' },
-        { title: 'Agricultural Multi-Layer Data Fusion for Cloud-Based Advisory Services', meta: 'Mitacs Accelerate, with TELUS & Olds College — $120,000, 2021–2023' },
-        { title: 'Measurement Capacity of Geometry Parameters in Coffee Fields by LiDAR Sensor', meta: 'São Paulo Research Foundation (FAPESP) — $1,800, 2016–2017' },
+        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Principal Investigator - $500,000. Further development of tools for the HyperLayer and AgExpert platforms to support farmers and agronomists with automated data processing frameworks.' },
+        { title: 'Introduction of On-Farm Precision Experimentation (OFPE) to Alberta Farms', meta: 'Results Driven Agriculture Research (RDAR) - $225,000, 2 years' },
+        { title: 'Agricultural Multi-Layer Data Fusion for Cloud-Based Advisory Services', meta: 'Mitacs Accelerate, with TELUS & Olds College - $120,000, 2021-2023' },
+        { title: 'Measurement Capacity of Geometry Parameters in Coffee Fields by LiDAR Sensor', meta: 'São Paulo Research Foundation (FAPESP) - $1,800, 2016-2017' },
       ],
       awards: [
-        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — highest final GPA in Agronomic Engineering, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — highest GPA in the phytopathology / microbiology course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — sustainable agriculture course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — statewide recognition of top technology graduates, Class of 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
-        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — $25,000, 2021' },
+        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP - highest final GPA in Agronomic Engineering, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP - highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ - highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP - highest GPA in the phytopathology / microbiology course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP - highest final GPA, Class of 2018 (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "FUNDAÇÃO AGRISUS - PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP - sustainable agriculture course set (January 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP - statewide recognition of top technology graduates, Class of 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
+        { title: 'Schulich Graduate Fellowship', meta: 'McGill University - $25,000, 2021' },
         { title: '2nd Place, Student Presentation', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
         { title: '2nd Place, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
-        { title: 'George H. Cook Scholar — Honors Thesis Presentation', meta: 'USP–Rutgers partnership / SIICUSP, 2016' },
+        { title: 'George H. Cook Scholar - Honors Thesis Presentation', meta: 'USP-Rutgers partnership / SIICUSP, 2016' },
       ],
     };
 
@@ -855,6 +884,8 @@
       title: 'Instrutor e Pesquisador',
       institution: 'Olds College of Agriculture & Technology',
       tagline: 'À frente da revolução da agricultura digital no Canadá',
+      finalistTitle: '🏆 Finalista ASTech Awards 2026 - Plataforma HyperLayer',
+      finalistMeta: 'Categorias Agricultura e Agroalimentos & Inovação Regional',
       saveContact: 'Salvar Contato',
       showQr: 'Exibir QR Code',
       focusLabel: 'ÁREAS DE P&D',
@@ -885,9 +916,9 @@
         'Graduação em Engenharia Agronômica, Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ/USP), Brasil',
       ],
       projects: [
-        { title: 'Plataforma HyperLayer', desc: 'Continua apoiando a integração de múltiplas camadas de dados agrícolas com predições de IA para a agricultura de precisão.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
-        { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Liderou a aplicação, o processo científico e a análise de um programa multianual de ensaios a campo em Alberta e Saskatchewan (2024–2026).', url: 'https://ofpeprairiesca.github.io/' },
-        { title: 'Pesquisa Smart Farm — Olds College', desc: 'Apoia pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
+        { title: 'Plataforma HyperLayer - Finalista ASTech Awards 2026', desc: 'Uma plataforma de dados padronizada e georreferenciada que unifica dados agrícolas fragmentados - solo, imagens, produtividade, clima - em um único sistema: essencialmente um gêmeo digital do campo. Construída na Smart Farm do Olds College como base para ferramentas agrícolas de próxima geração com IA. Desenvolvida em parceria com Alex Melnitchouck.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Liderou a aplicação, o processo científico e a análise de um programa multianual de ensaios a campo em Alberta e Saskatchewan (2024-2026).', url: 'https://ofpeprairiesca.github.io/' },
+        { title: 'Pesquisa Smart Farm - Olds College', desc: 'Apoia pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'Parceria McGill-TELUS-Olds College', desc: 'Colaboração conjunta de pesquisa entre McGill, TELUS e Olds College na integração de dados agrícolas.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Desenvolvimento de Frameworks para Coleta e Processamento de Dados', desc: 'Desenvolve frameworks para coleta e processamento de dados agrícolas no treinamento de modelos de IA.' },
       ],
@@ -909,23 +940,23 @@
         { source: 'Blog TELUS', desc: 'Investimento em inovação agtech com a Smart Farm do Olds College', url: 'https://www.telus.com/agcg/en/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
       ],
       funding: [
-        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Pesquisador Principal — US$ 500.000. Desenvolvimento contínuo de ferramentas para as plataformas HyperLayer e AgExpert, apoiando produtores e agrônomos com frameworks automatizados de processamento de dados.' },
-        { title: 'Introdução da Experimentação de Precisão a Campo (OFPE) em fazendas de Alberta', meta: 'Results Driven Agriculture Research (RDAR) — US$ 225.000, 2 anos' },
-        { title: 'Fusão de Dados Agrícolas Multicamadas para Serviços de Consultoria em Nuvem', meta: 'Mitacs Accelerate, com TELUS e Olds College — US$ 120.000, 2021–2023' },
-        { title: 'Capacidade de Medição de Parâmetros Geométricos em Cafezais por Sensor LiDAR', meta: 'FAPESP — US$ 1.800, 2016–2017' },
+        { title: 'HyperLayer + Farm Credit Canada / AgExpert', meta: 'Pesquisador Principal - US$ 500.000. Desenvolvimento contínuo de ferramentas para as plataformas HyperLayer e AgExpert, apoiando produtores e agrônomos com frameworks automatizados de processamento de dados.' },
+        { title: 'Introdução da Experimentação de Precisão a Campo (OFPE) em fazendas de Alberta', meta: 'Results Driven Agriculture Research (RDAR) - US$ 225.000, 2 anos' },
+        { title: 'Fusão de Dados Agrícolas Multicamadas para Serviços de Consultoria em Nuvem', meta: 'Mitacs Accelerate, com TELUS e Olds College - US$ 120.000, 2021-2023' },
+        { title: 'Capacidade de Medição de Parâmetros Geométricos em Cafezais por Sensor LiDAR', meta: 'FAPESP - US$ 1.800, 2016-2017' },
       ],
       awards: [
-        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP — maior média na classificação final do curso de Engenharia Agronômica, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP — maior média no conjunto de disciplinas de fitopatologia / microbiologia (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP — maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio "FUNDAÇÃO AGRISUS – PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP — conjunto de disciplinas de agricultura sustentável (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
-        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP — reconhecimento estadual aos formandos da área tecnológica, Classe 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
-        { title: 'Schulich Graduate Fellowship', meta: 'McGill University — US$ 25.000, 2021' },
+        { title: 'Prêmio "LUIZ DE QUEIROZ"', meta: 'ESALQ/USP - maior média na classificação final do curso de Engenharia Agronômica, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "CREA" (Diploma de Honra ao Mérito)', meta: 'ESALQ/USP - maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "ADEALQ"', meta: 'Associação dos Ex-Alunos da ESALQ - maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "Prof. FERDINANDO GALLI"', meta: 'ESALQ/USP - maior média no conjunto de disciplinas de fitopatologia / microbiologia (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "INSTITUTO DE ENGENHARIA"', meta: 'ESALQ/USP - maior média na classificação final, Classe 2018 (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio "FUNDAÇÃO AGRISUS - PELA AGRICULTURA SUSTENTÁVEL"', meta: 'ESALQ/USP - conjunto de disciplinas de agricultura sustentável (janeiro de 2019)', url: 'https://www.esalq.usp.br/graduacao/premios/premios-da-esalq' },
+        { title: 'Prêmio Crea-SP de Formação Profissional', meta: 'Crea-SP - reconhecimento estadual aos formandos da área tecnológica, Classe 2018 (2019)', url: 'https://www.creasp.org.br/noticia/premio-crea-sp-homenageia-centenas-de-formandos-da-area-tecnologica/' },
+        { title: 'Schulich Graduate Fellowship', meta: 'McGill University - US$ 25.000, 2021' },
         { title: '2º lugar, Apresentação Estudantil', meta: 'Proximal & Remote Sensing Soil Investigations Symposium, 2021' },
         { title: '2º lugar, NUE Granular Graduate Student Data Hack-a-thon', meta: 'Nitrogen Use Efficiency Workshop, 2019' },
-        { title: 'George H. Cook Scholar — Apresentação de monografia de honra', meta: 'Parceria USP–Rutgers / SIICUSP, 2016' },
+        { title: 'George H. Cook Scholar - Apresentação de monografia de honra', meta: 'Parceria USP-Rutgers / SIICUSP, 2016' },
       ],
     };
 
@@ -935,12 +966,12 @@
         labelEN: 'Journal Articles',
         labelPT: 'Artigos em Periódicos',
         items: [
-          { title: 'Comparative study of interpolation methods for low-density sampling', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck — Precision Agriculture, 25(6), 2024', url: 'https://doi.org/10.1007/s11119-024-10141-0' },
-          { title: 'Validation and potential improvement of soil survey maps using proximal soil sensing', meta: 'Karp, Adamchuk, Melnitchouck, Allred, Dutilleul, Martinez — J. of Environmental and Engineering Geophysics, 2023', url: 'https://doi.org/10.32389/JEEG22-018' },
-          { title: 'Yield mapping methods for manually harvested crops', meta: 'Colaço, Trevisan, Karp, Molin — Computers and Electronics in Agriculture, 177, 2020', url: 'https://doi.org/10.1016/j.compag.2020.105693' },
-          { title: 'Ammonia volatilization losses from urea coated with copper, boron, and selenium', meta: 'Faria, Karp, Machado, Abdalla — Semina: Ciências Agrárias, 41(4), 2020', url: 'https://doi.org/10.5433/1679-0359.2020v41n4p1415' },
-          { title: 'Nutritional quality and organic matter degradability of Brachiaria spp. agronomically biofortified with selenium', meta: 'Faria, Karp, et al. — J. of Animal Physiology and Animal Nutrition, 102(6), 2018', url: 'https://doi.org/10.1111/jpn.12971' },
-          { title: 'Brachiaria enrichment with selenium-coated urea', meta: 'Faria, Machado, Karp, et al. — Ciência Rural, 48(6), 2018', url: 'https://doi.org/10.1590/0103-8478cr20170630' },
+          { title: 'Comparative study of interpolation methods for low-density sampling', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck - Precision Agriculture, 25(6), 2024', url: 'https://doi.org/10.1007/s11119-024-10141-0' },
+          { title: 'Validation and potential improvement of soil survey maps using proximal soil sensing', meta: 'Karp, Adamchuk, Melnitchouck, Allred, Dutilleul, Martinez - J. of Environmental and Engineering Geophysics, 2023', url: 'https://doi.org/10.32389/JEEG22-018' },
+          { title: 'Yield mapping methods for manually harvested crops', meta: 'Colaço, Trevisan, Karp, Molin - Computers and Electronics in Agriculture, 177, 2020', url: 'https://doi.org/10.1016/j.compag.2020.105693' },
+          { title: 'Ammonia volatilization losses from urea coated with copper, boron, and selenium', meta: 'Faria, Karp, Machado, Abdalla - Semina: Ciências Agrárias, 41(4), 2020', url: 'https://doi.org/10.5433/1679-0359.2020v41n4p1415' },
+          { title: 'Nutritional quality and organic matter degradability of Brachiaria spp. agronomically biofortified with selenium', meta: 'Faria, Karp, et al. - J. of Animal Physiology and Animal Nutrition, 102(6), 2018', url: 'https://doi.org/10.1111/jpn.12971' },
+          { title: 'Brachiaria enrichment with selenium-coated urea', meta: 'Faria, Machado, Karp, et al. - Ciência Rural, 48(6), 2018', url: 'https://doi.org/10.1590/0103-8478cr20170630' },
         ],
       },
       {
@@ -948,7 +979,7 @@
         labelEN: 'Book Chapter',
         labelPT: 'Capítulo de Livro',
         items: [
-          { title: 'Developments in proximal soil sensing for precision agriculture', meta: 'Adamchuk, Karp, Biswas — Precision Agriculture for Sustainability (2nd Ed.), Burleigh Dodds, 2025' },
+          { title: 'Developments in proximal soil sensing for precision agriculture', meta: 'Adamchuk, Karp, Biswas - Precision Agriculture for Sustainability (2nd Ed.), Burleigh Dodds, 2025' },
         ],
       },
       {
@@ -956,9 +987,9 @@
         labelEN: 'Refereed Conference Proceedings',
         labelPT: 'Trabalhos Completos em Anais (com Revisão)',
         items: [
-          { title: 'Comparative study of interpolation methods for low-density sampling', meta: "Precision Agriculture '23 — 14th ECPA, Bologna, 2023", url: 'https://doi.org/10.3920/978-90-8686-947-3_71' },
-          { title: 'Accuracy assessment of a mobile terrestrial laser scanner for tree crops', meta: 'Advances in Animal Biosciences, 8(2) — ECPA 2017', url: 'https://doi.org/10.1017/S2040470017000073' },
-          { title: 'Yield mapping methods for manually harvested crops', meta: "Precision Agriculture '15 — 10th ECPA, Tel Aviv, 2015", url: 'https://doi.org/10.3920/978-90-8686-814-8_27' },
+          { title: 'Comparative study of interpolation methods for low-density sampling', meta: "Precision Agriculture '23 - 14th ECPA, Bologna, 2023", url: 'https://doi.org/10.3920/978-90-8686-947-3_71' },
+          { title: 'Accuracy assessment of a mobile terrestrial laser scanner for tree crops', meta: 'Advances in Animal Biosciences, 8(2) - ECPA 2017', url: 'https://doi.org/10.1017/S2040470017000073' },
+          { title: 'Yield mapping methods for manually harvested crops', meta: "Precision Agriculture '15 - 10th ECPA, Tel Aviv, 2015", url: 'https://doi.org/10.3920/978-90-8686-814-8_27' },
         ],
       },
       {
@@ -966,12 +997,12 @@
         labelEN: 'Non-Refereed Conference Proceedings',
         labelPT: 'Trabalhos em Anais (sem Revisão)',
         items: [
-          { title: 'Development of an automated system for in situ measurements of soil health indicators', meta: 'Lan, Adamchuk, Geddes, Kvezereli, Karp, McGuire — 2024 ASABE Annual International Meeting, Anaheim', url: 'https://doi.org/10.13031/aim.202401135' },
-          { title: 'Predicting soil chemical properties using proximal soil sensing technologies and topography data: A case study', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck, Biswas — 16th ICPA, Manhattan, KS, 2024' },
-          { title: 'Optimization of batch processing of high-density anisotropic distributed proximal soil sensing data for precision agriculture purposes', meta: 'Karp, Adamchuk, Melnitchouck, Dutilleul — 15th ICPA, Minneapolis, 2022' },
-          { title: 'Canopy parameters in coffee orchards obtained by a mobile terrestrial laser scanner', meta: 'Karp, Colaço, Trevisan, Molin — 14th ICPA, Montreal, 2018' },
-          { title: 'Soybean plant phenotyping using low-cost sensors', meta: 'Ferraz, Karp, Trevisan, Eitelwein, Molin — 14th ICPA, Montreal, 2018' },
-          { title: 'Comparação entre sensores de condutividade e resistividade elétrica do solo', meta: 'Karp, Colaço, Trevisan, Molin — X Congresso Brasileiro de Agroinformática, 2015' },
+          { title: 'Development of an automated system for in situ measurements of soil health indicators', meta: 'Lan, Adamchuk, Geddes, Kvezereli, Karp, McGuire - 2024 ASABE Annual International Meeting, Anaheim', url: 'https://doi.org/10.13031/aim.202401135' },
+          { title: 'Predicting soil chemical properties using proximal soil sensing technologies and topography data: A case study', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck, Biswas - 16th ICPA, Manhattan, KS, 2024' },
+          { title: 'Optimization of batch processing of high-density anisotropic distributed proximal soil sensing data for precision agriculture purposes', meta: 'Karp, Adamchuk, Melnitchouck, Dutilleul - 15th ICPA, Minneapolis, 2022' },
+          { title: 'Canopy parameters in coffee orchards obtained by a mobile terrestrial laser scanner', meta: 'Karp, Colaço, Trevisan, Molin - 14th ICPA, Montreal, 2018' },
+          { title: 'Soybean plant phenotyping using low-cost sensors', meta: 'Ferraz, Karp, Trevisan, Eitelwein, Molin - 14th ICPA, Montreal, 2018' },
+          { title: 'Comparação entre sensores de condutividade e resistividade elétrica do solo', meta: 'Karp, Colaço, Trevisan, Molin - X Congresso Brasileiro de Agroinformática, 2015' },
         ],
       },
       {
@@ -979,9 +1010,9 @@
         labelEN: 'Theses & Dissertations',
         labelPT: 'Teses e Dissertações',
         items: [
-          { title: 'Analysis of Multi-Layer Spatial Data to Increase the Accuracy of Thematic Soil Maps for Agriculture', meta: 'PhD, Bioresource Engineering — McGill University, 2025', url: 'https://escholarship.mcgill.ca/concern/theses/gq67jx84w' },
-          { title: 'Within-Field Yield Prediction for Sugarcane and Rice Focused on Precision Agriculture Applications', meta: 'MS, Precision Agriculture — Louisiana State University, 2020', url: 'https://doi.org/10.31390/gradschool_theses.5228' },
-          { title: 'Use of LiDAR Sensor in Coffee: Evaluation of Canopy Parameters Spatial Variability', meta: 'BSc Monograph — ESALQ, University of São Paulo, 2018' },
+          { title: 'Analysis of Multi-Layer Spatial Data to Increase the Accuracy of Thematic Soil Maps for Agriculture', meta: 'PhD, Bioresource Engineering - McGill University, 2025', url: 'https://escholarship.mcgill.ca/concern/theses/gq67jx84w' },
+          { title: 'Within-Field Yield Prediction for Sugarcane and Rice Focused on Precision Agriculture Applications', meta: 'MS, Precision Agriculture - Louisiana State University, 2020', url: 'https://doi.org/10.31390/gradschool_theses.5228' },
+          { title: 'Use of LiDAR Sensor in Coffee: Evaluation of Canopy Parameters Spatial Variability', meta: 'BSc Monograph - ESALQ, University of São Paulo, 2018' },
         ],
       },
       {
@@ -1010,17 +1041,17 @@
         labelEN: 'Invited & Keynote Presentations',
         labelPT: 'Palestras e Apresentações Convidadas',
         items: [
-          { title: 'Artificial Intelligence: Practical Applications and Future Potential in Agriculture', meta: 'Top Crop Summit, Saskatoon, SK — Feb 2025' },
-          { title: 'Advancing Productivity on Canadian Smart Farms', meta: 'Winnipeg, MB — Sep 2024' },
-          { title: 'Pros and Cons of Conducting On-Farm Research', meta: 'AgSmart 2024, Olds, AB — Jul 2024' },
-          { title: 'Can Soil Fertility Mapping Affect Management Decisions?', meta: 'AgSmart 2024, Olds, AB — Jul 2024' },
-          { title: 'Artificial Intelligence: Current and Future Use in Agriculture', meta: 'TELUS Agriculture Client Meeting, Okotoks, AB — Jul 2024' },
-          { title: 'Assessing Lodging with Drones and Computer Learning', meta: 'Alberta Agronomy Update (online) — Jan 2024' },
-          { title: 'Soil Mapping for Precision Agriculture', meta: 'AgSmart 2023, Olds, AB — Aug 2023' },
-          { title: 'Virtual Soil Survey from Sensors & Machine Learning', meta: 'AgSmart 2022, Olds, AB — Aug 2022' },
-          { title: 'Validation of Soil Survey Maps using Different Proximal Soil Sensing Methods', meta: 'Talk About Geophysics Symposium (online) — Dec 2021' },
-          { title: 'Sugarcane Yield Map Prediction Based on Satellite Imagery', meta: 'LA Div. American Society of Sugar Cane Technologists (online) — Jan 2021' },
-          { title: 'Yield Filtering Using YieldEditor 2.0', meta: 'Digital Agriculture Conference, Alexandria, LA — Jan 2020' },
+          { title: 'Artificial Intelligence: Practical Applications and Future Potential in Agriculture', meta: 'Top Crop Summit, Saskatoon, SK - Feb 2025' },
+          { title: 'Advancing Productivity on Canadian Smart Farms', meta: 'Winnipeg, MB - Sep 2024' },
+          { title: 'Pros and Cons of Conducting On-Farm Research', meta: 'AgSmart 2024, Olds, AB - Jul 2024' },
+          { title: 'Can Soil Fertility Mapping Affect Management Decisions?', meta: 'AgSmart 2024, Olds, AB - Jul 2024' },
+          { title: 'Artificial Intelligence: Current and Future Use in Agriculture', meta: 'TELUS Agriculture Client Meeting, Okotoks, AB - Jul 2024' },
+          { title: 'Assessing Lodging with Drones and Computer Learning', meta: 'Alberta Agronomy Update (online) - Jan 2024' },
+          { title: 'Soil Mapping for Precision Agriculture', meta: 'AgSmart 2023, Olds, AB - Aug 2023' },
+          { title: 'Virtual Soil Survey from Sensors & Machine Learning', meta: 'AgSmart 2022, Olds, AB - Aug 2022' },
+          { title: 'Validation of Soil Survey Maps using Different Proximal Soil Sensing Methods', meta: 'Talk About Geophysics Symposium (online) - Dec 2021' },
+          { title: 'Sugarcane Yield Map Prediction Based on Satellite Imagery', meta: 'LA Div. American Society of Sugar Cane Technologists (online) - Jan 2021' },
+          { title: 'Yield Filtering Using YieldEditor 2.0', meta: 'Digital Agriculture Conference, Alexandria, LA - Jan 2020' },
         ],
       },
     ];
@@ -1146,12 +1177,12 @@
       const awards = c.awards.map(renderPubItem).join('');
 
       const media = c.media.map((m) =>
-        `<a href="${esc(m.url)}" target="_blank" rel="noopener"><b>${esc(m.source)}</b> — ${esc(m.desc)}</a>`
+        `<a href="${esc(m.url)}" target="_blank" rel="noopener"><b>${esc(m.source)}</b> - ${esc(m.desc)}</a>`
       ).join('');
 
       document.getElementById('app').innerHTML = `
         <header class="hero">
-          <img class="brand-logo" src="assets/images/fk-logo.png" alt="FK — Felippe Karp" width="120" height="120">
+          <img class="brand-logo" src="assets/images/fk-logo.png" alt="FK - Felippe Karp" width="120" height="120">
           <div class="hero-copy">
             <div class="identity">
               <div class="profile-wrap">
@@ -1162,6 +1193,10 @@
                 <div class="role-label">${esc(c.roleLabel)}</div>
                 <div class="title-line">${esc(c.institution)}</div>
               </div>
+            </div>
+            <div class="finalist-badge">
+              <strong>${esc(c.finalistTitle)}</strong>
+              <span>${esc(c.finalistMeta)}</span>
             </div>
             <p class="tagline">${esc(c.tagline)}</p>
             <div class="cta-row">
