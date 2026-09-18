@@ -176,11 +176,18 @@
     }
 
     .finalist-badge {
+      display: block;
       width: 100%;
       background: var(--surface-2);
       border: 1px solid color-mix(in srgb, var(--stamp) 50%, var(--border));
       border-radius: 10px;
       padding: 12px 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .finalist-badge:hover {
+      border-color: var(--stamp);
     }
 
     .finalist-badge strong {
@@ -458,6 +465,36 @@
 
     .project-item:first-child { padding-top: 2px; }
     .project-item:hover { opacity: 0.85; }
+
+    #hyperlayer {
+      scroll-margin-top: 20px;
+      position: relative;
+      border-radius: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    #hyperlayer:target,
+    #hyperlayer.is-ping {
+      animation: pin-ping 1.8s ease;
+    }
+
+    @keyframes pin-ping {
+      0%, 40% {
+        background: color-mix(in srgb, var(--stamp) 28%, transparent);
+        box-shadow: inset 3px 0 0 var(--stamp), 0 0 0 0 color-mix(in srgb, var(--stamp) 45%, transparent);
+      }
+      20%, 60% {
+        background: color-mix(in srgb, var(--stamp) 10%, transparent);
+        box-shadow: inset 3px 0 0 var(--stamp), 0 0 0 10px transparent;
+      }
+      100% {
+        background: transparent;
+        box-shadow: inset 3px 0 0 transparent, 0 0 0 12px transparent;
+      }
+    }
 
     .project-item h3 {
       font-family: 'Space Grotesk', sans-serif;
@@ -773,6 +810,12 @@
         animation: none !important;
         transition: none !important;
       }
+
+      #hyperlayer:target,
+      #hyperlayer.is-ping {
+        background: color-mix(in srgb, var(--stamp) 14%, transparent);
+        box-shadow: inset 3px 0 0 var(--stamp);
+      }
     }
   </style>
 </head>
@@ -817,6 +860,7 @@
       faculty: 'Faculty Profile',
       academicLabel: 'ACADEMIC BACKGROUND',
       projectsLabel: 'KEY PROJECTS & ACHIEVEMENTS',
+      supervisionLabel: 'STUDENT SUPERVISION',
       pubSectionLabel: 'PUBLICATIONS',
       pubHint: 'Journal articles, book chapters, conference proceedings, theses & talks',
       fundingLabel: 'FUNDED PROJECTS',
@@ -834,11 +878,15 @@
         'BSc in Agronomic Engineering, School of Agriculture "Luiz de Queiroz", University of São Paulo, Brazil',
       ],
       projects: [
-        { title: 'HyperLayer Data Platform - 2026 ASTech Awards Finalist', desc: 'A standardized, georeferenced data platform that unifies fragmented farm data - soil, imagery, yield, weather - into one system: essentially a digital twin of the field. Built at Olds College\'s Smart Farm as the foundation for next-generation AI-powered farm tools. Co-built with Alex Melnitchouck.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'HyperLayer Data Platform - 2026 ASTech Awards Finalist', desc: 'A standardized, georeferenced data platform that unifies fragmented farm data - soil, imagery, yield, weather - into one system: essentially a digital twin of the field. Built at Olds College\'s Smart Farm as the foundation for next-generation AI-powered farm tools. Co-built with Alex Melnitchouck. Led development as Research Associate, Digital Ag, at Olds College\'s Center for Innovation (2024), guiding the technical team building the platform.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
         { title: 'On-Farm Precision Experimentation in the Prairies', desc: 'Led the application, scientific process, and analysis of a multi-year on-farm experimentation program across Alberta and Saskatchewan (2024-2026).', url: 'https://ofpeprairiesca.github.io/' },
         { title: 'Olds College Smart Farm Research', desc: 'Supporting research with >4 terabytes of agricultural data from a 2,800-acre real-world farming operation.', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'McGill-TELUS-Olds College Partnership', desc: 'Joint research collaboration on agricultural data integration.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Development of Frameworks for Data Collection and Processing', desc: 'Developing frameworks for agricultural data collection and processing for AI model training.' },
+      ],
+      supervision: [
+        { title: 'Zachary Komarnisky — Bachelor of Digital Agriculture Student (2025 – Present)', desc: 'Supervising the development of a machine learning framework for automated anomaly detection in precision agriculture geospatial data, using HyperLayer Data Concept project datasets. Funded by an NSERC CCI Mobilize Grant (CCMOB-2024-00038).' },
+        { title: 'Gareth Meagher — Precision Agriculture, Techgronomy Diploma Student (2025)', desc: 'Mentored during a four-month paid internship (NSERC CCI Mobilize Grant-funded, CCMOB-2024-00038), contributing to the development of a UAV-based, convolutional neural network crop lodging detection framework using Alberta Grains Plot2Farm plant growth regulator trial data.' },
       ],
       focus: [
         'Digital & Precision Agriculture',
@@ -899,6 +947,7 @@
       faculty: 'Perfil Institucional',
       academicLabel: 'FORMAÇÃO ACADÊMICA',
       projectsLabel: 'PRINCIPAIS PROJETOS E REALIZAÇÕES',
+      supervisionLabel: 'SUPERVISÃO DE ESTUDANTES',
       pubSectionLabel: 'PRODUÇÃO CIENTÍFICA',
       pubHint: 'Artigos, capítulos, anais, teses e palestras',
       fundingLabel: 'PROJETOS FINANCIADOS',
@@ -916,11 +965,15 @@
         'Graduação em Engenharia Agronômica, Escola Superior de Agricultura "Luiz de Queiroz" (ESALQ/USP), Brasil',
       ],
       projects: [
-        { title: 'Plataforma HyperLayer - Finalista ASTech Awards 2026', desc: 'Uma plataforma de dados padronizada e georreferenciada que unifica dados agrícolas fragmentados - solo, imagens, produtividade, clima - em um único sistema: essencialmente um gêmeo digital do campo. Construída na Smart Farm do Olds College como base para ferramentas agrícolas de próxima geração com IA. Desenvolvida em parceria com Alex Melnitchouck.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
+        { title: 'Plataforma HyperLayer - Finalista ASTech Awards 2026', desc: 'Uma plataforma de dados padronizada e georreferenciada que unifica dados agrícolas fragmentados - solo, imagens, produtividade, clima - em um único sistema: essencialmente um gêmeo digital do campo. Construída na Smart Farm do Olds College como base para ferramentas agrícolas de próxima geração com IA. Desenvolvida em parceria com Alex Melnitchouck. Liderou o desenvolvimento como Associado de Pesquisa em Agricultura Digital no Center for Innovation do Olds College (2024), orientando a equipe técnica na construção da plataforma.', url: 'https://www.oldscollege.ca/smart-farm-research/research-projects/smart-ag/current/hyperlayer-data-concept.html' },
         { title: 'Experimentação de Precisão a Campo nas Pradarias', desc: 'Liderou a aplicação, o processo científico e a análise de um programa multianual de ensaios a campo em Alberta e Saskatchewan (2024-2026).', url: 'https://ofpeprairiesca.github.io/' },
         { title: 'Pesquisa Smart Farm - Olds College', desc: 'Apoia pesquisas com mais de 4 terabytes de dados de uma fazenda real de 2.800 acres (cerca de 1.130 hectares).', url: 'https://www.oldscollege.ca/smart-farm-research/index.html' },
         { title: 'Parceria McGill-TELUS-Olds College', desc: 'Colaboração conjunta de pesquisa entre McGill, TELUS e Olds College na integração de dados agrícolas.', url: 'https://www.telus.com/agcg/en-ca/blog-resources/investing-in-agtech-innovation-with-the-olds-college-smart-farm' },
         { title: 'Desenvolvimento de Frameworks para Coleta e Processamento de Dados', desc: 'Desenvolve frameworks para coleta e processamento de dados agrícolas no treinamento de modelos de IA.' },
+      ],
+      supervision: [
+        { title: 'Zachary Komarnisky — Estudante de Bacharelado em Agricultura Digital (2025 – Presente)', desc: 'Supervisiona o desenvolvimento de um framework de aprendizado de máquina para detecção automatizada de anomalias em dados geoespaciais de agricultura de precisão, utilizando conjuntos de dados do projeto HyperLayer Data Concept. Financiado por uma bolsa NSERC CCI Mobilize (CCMOB-2024-00038).' },
+        { title: 'Gareth Meagher — Agricultura de Precisão, Estudante do Diploma em Techgronomy (2025)', desc: 'Mentorou durante um estágio remunerado de quatro meses (financiado pela bolsa NSERC CCI Mobilize, CCMOB-2024-00038), contribuindo para o desenvolvimento de um framework de detecção de acamamento de culturas baseado em VANTs e redes neurais convolucionais, utilizando dados do ensaio de reguladores de crescimento Plot2Farm da Alberta Grains.' },
       ],
       focus: [
         'Agricultura Digital e de Precisão',
@@ -997,6 +1050,8 @@
         labelEN: 'Non-Refereed Conference Proceedings',
         labelPT: 'Trabalhos em Anais (sem Revisão)',
         items: [
+          { title: 'On-farm Precision Experimentation in Western Canada: A Case Study Focused on Adoption, Challenges, and Practical Results', meta: 'Karp, Bateman, Simons, Boychyn - 17th ICPA / 11th ConBAP, Porto Alegre, 2026' },
+          { title: 'A Machine Learning Framework for Automated Anomaly Detection in Precision Agriculture Geospatial Data', meta: 'Komarnisky, Karp - 17th ICPA / 11th ConBAP, Porto Alegre, 2026' },
           { title: 'Development of an automated system for in situ measurements of soil health indicators', meta: 'Lan, Adamchuk, Geddes, Kvezereli, Karp, McGuire - 2024 ASABE Annual International Meeting, Anaheim', url: 'https://doi.org/10.13031/aim.202401135' },
           { title: 'Predicting soil chemical properties using proximal soil sensing technologies and topography data: A case study', meta: 'Karp, Adamchuk, Dutilleul, Melnitchouck, Biswas - 16th ICPA, Manhattan, KS, 2024' },
           { title: 'Optimization of batch processing of high-density anisotropic distributed proximal soil sensing data for precision agriculture purposes', meta: 'Karp, Adamchuk, Melnitchouck, Dutilleul - 15th ICPA, Minneapolis, 2022' },
@@ -1020,20 +1075,14 @@
         labelEN: 'Conference Abstracts & Presentations',
         labelPT: 'Resumos e Apresentações em Congressos',
         items: [
+          { title: 'Who is the Agricultural Practitioner of the Future?', meta: 'Karran, Hoffos, Karp - 17th ICPA / 11th ConBAP, Porto Alegre, 2026 (poster; abstract accepted)' },
+          { title: 'Filtering Toolkit for Proximal Soil Sensor Data to Improve Data-Driven Decision Making', meta: 'Komarnisky, Karp - Alberta Soil Science Workshop, Olds, AB, 2026' },
+          { title: 'On-Farm Precision Experimentation to Optimize Seeding and Nitrogen Rates in Alberta Wheat Production', meta: 'Karp - Alberta Soil Science Workshop, Olds, AB, 2026' },
           { title: 'Olds College Bridging Research to On-Farm Implementation for Sustainable Soil Practices: Study Cases', meta: 'Canadian Soil Science Society Annual Meeting, Vancouver, 2024' },
           { title: 'Towards Digital Soil Characterization Using Proximal Soil Sensor Data Fusion: A Case Study', meta: 'CSBE Annual Meeting, Charlottetown, 2022' },
           { title: 'Validation of Soil Survey Maps using Different Proximal Soil Sensing Methods', meta: 'EEGS-WG-PSS-SEG Symposium (online), 2021' },
-          { title: 'Automated Spatial Yield Prediction Framework for Corn in Louisiana', meta: 'ASA, CSSA, SSSA Annual Meeting, 2021', url: 'https://scisoc.confex.com/scisoc/2021am/meetingapp.cgi/Paper/134689' },
-          { title: 'A Practical Variable Rate Nitrogen Fertilization Recommendation Generated from Active Crop Canopy Sensors and UAV Passive Sensor', meta: 'ASA, CSSA, SSSA Annual Meeting, 2021', url: 'https://scisoc.confex.com/scisoc/2021am/meetingapp.cgi/Paper/135502' },
           { title: 'Accuracy Assessment of a Machine Learning Sugarcane Yield Map Prediction System', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126109' },
-          { title: 'Yield Map Prediction for Rice in Louisiana Using Machine Learning', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126087' },
-          { title: 'A Programmatic Framework to Evaluate Crop Yield Response by Soil Characteristics in On-Farm Precision Experiments', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/125315' },
-          { title: 'Drone-Based Vegetation Indices Evaluation for Variety Differentiation', meta: 'ASA, CSSA, SSSA Annual Meeting, 2020', url: 'https://scisoc.confex.com/scisoc/2020am/meetingapp.cgi/Paper/126988' },
           { title: 'Sugarcane Yield Map Prediction: A Preliminary Study', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019', url: 'https://scisoc.confex.com/scisoc/2019am/meetingapp.cgi/Paper/120075' },
-          { title: 'Spatial Nitrogen (N) Rich Strip Approach to Evaluate the N Demand for Cotton Based on Satellite Remote Sensing', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019' },
-          { title: 'Studying the Relationship of Nitrogen Fertilizer Rates and Corn Plant Population Using Sensor Fusion', meta: 'ASA, CSSA, SSSA Annual Meeting, 2019' },
-          { title: 'Degradabilidade e produção de gases in vitro de Brachiaria brizantha biofortificada agronomicamente com selênio', meta: 'SIICUSP Undergraduate Symposium, USP, 2015' },
-          { title: 'Análise de gossipol livre em coprodutos da indústria algodoeira, utilizando HPLC', meta: 'SIICUSP Undergraduate Symposium, USP, 2015' },
         ],
       },
       {
@@ -1148,12 +1197,17 @@
         `<div class="timeline-item"><span class="timeline-dot"></span><div>${esc(a)}</div></div>`
       ).join('');
 
-      const projects = c.projects.map((p) => {
+      const projects = c.projects.map((p, i) => {
+        const idAttr = i === 0 ? ' id="hyperlayer"' : '';
         if (p.url) {
-          return `<a class="project-item" href="${esc(p.url)}" target="_blank" rel="noopener"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></a>`;
+          return `<a class="project-item"${idAttr} href="${esc(p.url)}" target="_blank" rel="noopener"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></a>`;
         }
-        return `<div class="project-item no-link"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></div>`;
+        return `<div class="project-item no-link"${idAttr}><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></div>`;
       }).join('');
+
+      const supervision = c.supervision.map((s) =>
+        `<div class="pub-item"><span class="pub-title">${esc(s.title)}</span><div class="pub-meta">${esc(s.desc)}</div></div>`
+      ).join('');
 
       const pubs = PUBLICATIONS.map((cat) => {
         const open = !!openPubs[cat.key];
@@ -1194,10 +1248,10 @@
                 <div class="title-line">${esc(c.institution)}</div>
               </div>
             </div>
-            <div class="finalist-badge">
+            <a class="finalist-badge" href="#hyperlayer" onclick="pingHyperlayer(event)">
               <strong>${esc(c.finalistTitle)}</strong>
               <span>${esc(c.finalistMeta)}</span>
-            </div>
+            </a>
             <p class="tagline">${esc(c.tagline)}</p>
             <div class="cta-row">
               <button class="btn btn-primary" type="button" onclick="downloadVCard()">${iconDownload()} ${esc(c.saveContact)}</button>
@@ -1240,6 +1294,18 @@
         <section class="section">
           <div class="section-label">${esc(c.projectsLabel)}</div>
           <div class="project-list">${projects}</div>
+        </section>
+
+        <section class="section">
+          <div class="acc-item${openPubs.supervision ? ' open' : ''}" data-pub="supervision">
+            <button class="acc-trigger" type="button" onclick="togglePub('supervision')" aria-expanded="${!!openPubs.supervision}">
+              <span>${esc(c.supervisionLabel)}</span>
+              <span class="acc-meta">
+                <span class="acc-chevron" aria-hidden="true">▸</span>
+              </span>
+            </button>
+            <div class="acc-body">${supervision}</div>
+          </div>
         </section>
 
         <section class="section">
@@ -1288,6 +1354,18 @@
 
       document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'PT' : 'EN';
       document.documentElement.lang = currentLang === 'en' ? 'en' : 'pt-BR';
+    }
+
+    function pingHyperlayer(event) {
+      event.preventDefault();
+      const el = document.getElementById('hyperlayer');
+      if (!el) return;
+      el.classList.remove('is-ping');
+      void el.offsetWidth;
+      el.classList.add('is-ping');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      history.replaceState(null, '', '#hyperlayer');
+      el.addEventListener('animationend', () => el.classList.remove('is-ping'), { once: true });
     }
 
     function togglePub(key) {
